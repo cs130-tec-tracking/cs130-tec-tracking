@@ -4,7 +4,10 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Jameel Al-Aziz', 'jalaziz@ucla.edu'),
+    ('Garret Buell', 'garretbuell@ucla.edu'),
+    ('William Chiu', 'william.s.chiu@gmail.com'),
+    ('Mikal Saltveit', 'mikal@saltve.it'),
 )
 
 MANAGERS = ADMINS
@@ -27,7 +30,7 @@ DATABASES = {
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'America/Los_Angeles'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -116,8 +119,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'django.contrib.admindocs',
+    'activities',
+    'inventory',
 )
 
 # A sample logging configuration. The only tangible logging
