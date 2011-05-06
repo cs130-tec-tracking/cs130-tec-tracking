@@ -250,6 +250,11 @@ header nav a:hover {
 /* Fix clearfix: blueprintcss.lighthouseapp.com/projects/15318/tickets/5-extra-margin-padding-bottom-of-page */
 .clearfix { zoom: 1; }
 
+/* Center blocks */
+.center { margin-left:auto; margin-right:auto; }
+
+/* Pad table headers and data */
+td, th { padding: 2px 5px; }
 
 /* Grade-A Mobile Browsers (Opera Mobile, Mobile Safari, Android Chrome)
    consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/ */
