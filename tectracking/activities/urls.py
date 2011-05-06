@@ -1,5 +1,7 @@
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
+    (r'^calendar', 'activities.views.calendar'),
 )
 
