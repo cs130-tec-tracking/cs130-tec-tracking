@@ -1,6 +1,5 @@
 from django.contrib import admin
 from models import Activity, Room, RoomReservation, StatusType, Task, ActivityTask, Assignment, Note
-from django.contrib.admin.templatetags.admin_list import date_hierarchy
 
 class RoomReservationInline(admin.StackedInline):
     model = RoomReservation
