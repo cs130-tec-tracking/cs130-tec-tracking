@@ -1,15 +1,9 @@
-from django.template import Context, loader
-from django.http import HttpResponse
 from models import Activity
+from django.views.generic.base import TemplateView
+from django.views.generic.list import ListView
 
-def calendar(request):
-    template = loader.get_template('calendar.html')
-    context = Context()
-    return HttpResponse(template.render(context))
+class CalendarView(TemplateView):
+    template_name = 'calendar.html'
 
-def list(request):
-    template = loader.get_template('activity_list.html')
-    context = Context({
-                       'activities': Activity.objects.all()
-                       })
-    return HttpResponse(template.render(context))
+class ActivityListView(ListView):
+    model = Activity
