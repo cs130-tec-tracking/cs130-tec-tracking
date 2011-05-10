@@ -42,6 +42,11 @@ class Activity(models.Model):
         db_table = 'tracking_source'
         verbose_name_plural = 'activities'
         ordering = ['-event_start_date', '-event_end_date']
+        permissions = (
+            ('can_approve_activity', 'Can approve an activity by settings its approved id'),
+            ('can_accept_activity', 'Can accept an activity by settings its status to accepted'),
+            ('can_close_activity', 'Can close an activity by settings its status to complete'),
+        )
 
     def __unicode__(self):
         return self.tec_id
@@ -96,6 +101,9 @@ class ActivityTask(models.Model):
 
     class Meta:
         db_table = 'activity_tasks'
+        permissions = (
+            ('can_change_task_status', 'Can change the status of a task'),
+        )
 
 class Assignment(models.Model):
     activity = models.OneToOneField(Activity, db_column='tec_id')
