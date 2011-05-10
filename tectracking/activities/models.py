@@ -7,7 +7,15 @@ class Activity(models.Model):
         (u'N', u'No'),
     )
 
+    STATUS_CHOICES = (
+        (u'N', u'Not Accepted'),
+        (u'A', u'Accepted'),
+        (u'I', u'Incomplete'),
+        (u'C', u'Complete'),
+    )
+
     tec_id = models.CharField(max_length=11, primary_key=True)
+    approved_id = models.CharField(max_length=11, blank=True, null=True)
     event_type = models.CharField(max_length=10)
     short_desc = models.CharField(max_length=60, verbose_name='short description')
     reservation_desc = models.CharField(max_length=300, verbose_name='reservation description')
@@ -25,6 +33,7 @@ class Activity(models.Model):
     num_attendees = models.IntegerField(db_column='no_attendees', verbose_name='number of attendees')
     room_required = models.CharField(max_length=1, choices=REQUIRED_CHOICES)
     laptops_required = models.CharField(max_length=1, choices=REQUIRED_CHOICES)
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='N')
 
     reserved_rooms = models.ManyToManyField('Room', through='RoomReservation')
     tasks = models.ManyToManyField('Task', through='ActivityTask')
