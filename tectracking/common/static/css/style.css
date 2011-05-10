@@ -166,10 +166,6 @@ a:hover { color: #036; }
  * Primary styles
  */
 
-body {
-    font: 300 12px/18px "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",sans-serif;
-}
-
 #container {
     width: 800px;
     margin: 0px auto;
