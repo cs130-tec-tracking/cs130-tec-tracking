@@ -156,3 +156,7 @@ LOGGING = {
         },
     }
 }
+
+LOGIN_URL = '/auth/login/'
+LOGOUT_URL = '/auth/logout/'
+LOGIN_REDIRECT_URL = '/index'
