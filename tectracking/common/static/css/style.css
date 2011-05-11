@@ -166,62 +166,23 @@ a:hover { color: #036; }
  * Primary styles
  */
 
-body {
-    font: 300 12px/18px "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",sans-serif;
-}
-
 #container {
     width: 800px;
     margin: 0px auto;
-    padding: 15px;
+    padding: 5px;
 }
 
-#ibmheader {
-    width: 450px;
-    height: 278px;
-    margin: 0px auto;
-}
-
-header nav {
-    width: 450px;
-    margin: 0px auto;
+header {
+    padding-bottom: 15px;
 }
 
 header nav ul {
     list-style: none;
-    margin: 0px;
-    padding: 6px 0px;
 }
 
 header nav ul li {
     display: inline;
 }
-
-header nav a {
-    -moz-box-shadow: 0 0 25px rgba(255, 255, 255, 0.3) inset;
-    -webkit-box-shadow: 0 0 25px rgba(255, 255, 255, 0.3) inset;
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.3) inset;
-    background: none repeat scroll 0 0 #CAB99B;
-    color: #FFF;
-    direction: ltr;
-    display: inline-block;
-    letter-spacing: 1px;
-    line-height: 1em;
-    margin: 0 0.5em;
-    padding: 0.5em 1.5em;
-    position: relative;
-    text-decoration: none;
-    font-weight: bold;
-    text-transform: uppercase;
-    text-align: center;
-}
-
-header nav a:hover {
-    -moz-box-shadow: 0px 0px 30px #8b4020 inset;
-    -webkit-box-shadow: 0px 0px 30px #8b4020 inset;
-    box-shadow: 0px 0px 30px #8b4020 inset;
-}
-
 /* Pad table headers and data */
 td, th { padding: 2px 5px; }
 
