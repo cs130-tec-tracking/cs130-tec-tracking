@@ -1,15 +1,25 @@
-from django.template import Context, loader
-from django.http import HttpResponse
-from models import Activity
+from models import Activity, ActivityTask
+from django.views.generic.base import TemplateView
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
+from django.shortcuts import get_list_or_404
 
-def calendar(request):
-    template = loader.get_template('calendar.html')
-    context = Context()
-    return HttpResponse(template.render(context))
+class CalendarView(TemplateView):
+    template_name = 'calendar.html'
 
-def list(request):
-    template = loader.get_template('activity_list.html')
-    context = Context({
-                       'activities': Activity.objects.all()
-                       })
-    return HttpResponse(template.render(context))
+class ActivityListView(ListView):
+    model = Activity
+
+class ActivityDetailView(DetailView):
+    model = Activity
+
+class ActivityTaskListView(ListView):
+    model = ActivityTask
+
+    def get_queryset(self):
+        pk = self.kwargs.get('pk', None)
+
+        if pk is not None:
+            return ActivityTask.objects.filter(activity__pk=pk)
+
+        return None

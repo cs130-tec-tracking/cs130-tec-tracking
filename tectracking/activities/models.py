@@ -7,7 +7,15 @@ class Activity(models.Model):
         (u'N', u'No'),
     )
 
+    STATUS_CHOICES = (
+        (u'N', u'Not Accepted'),
+        (u'A', u'Accepted'),
+        (u'I', u'Incomplete'),
+        (u'C', u'Complete'),
+    )
+
     tec_id = models.CharField(max_length=11, primary_key=True)
+    approved_id = models.CharField(max_length=11, blank=True, null=True)
     event_type = models.CharField(max_length=10)
     short_desc = models.CharField(max_length=60, verbose_name='short description')
     reservation_desc = models.CharField(max_length=300, verbose_name='reservation description')
@@ -25,6 +33,7 @@ class Activity(models.Model):
     num_attendees = models.IntegerField(db_column='no_attendees', verbose_name='number of attendees')
     room_required = models.CharField(max_length=1, choices=REQUIRED_CHOICES)
     laptops_required = models.CharField(max_length=1, choices=REQUIRED_CHOICES)
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='N')
 
     reserved_rooms = models.ManyToManyField('Room', through='RoomReservation')
     tasks = models.ManyToManyField('Task', through='ActivityTask')
@@ -33,6 +42,11 @@ class Activity(models.Model):
         db_table = 'tracking_source'
         verbose_name_plural = 'activities'
         ordering = ['-event_start_date', '-event_end_date']
+        permissions = (
+            ('can_approve_activity', 'Can approve an activity by settings its approved id'),
+            ('can_accept_activity', 'Can accept an activity by settings its status to accepted'),
+            ('can_close_activity', 'Can close an activity by settings its status to complete'),
+        )
 
     def __unicode__(self):
         return self.tec_id
@@ -87,6 +101,9 @@ class ActivityTask(models.Model):
 
     class Meta:
         db_table = 'activity_tasks'
+        permissions = (
+            ('can_change_task_status', 'Can change the status of a task'),
+        )
 
 class Assignment(models.Model):
     activity = models.OneToOneField(Activity, db_column='tec_id')

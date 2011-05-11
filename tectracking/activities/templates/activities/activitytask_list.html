@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} | Tasks{% endblock %}
+
+{% block content %}
+<table class='center'>
+    <thead>
+        <th>Task Name</th>
+        <th>Status</th>
+    </thead>
+    <tbody>
+        {% for activity_task in activitytask_list %}
+        <tr>
+            <td>{{ activity_task.task.name }}</td>
+            <td>{{ activity_task.status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
