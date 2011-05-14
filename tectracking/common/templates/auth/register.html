@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load url from future %}
 
 {% block title %}{{ block.super }} | Register{% endblock %}
 
@@ -16,7 +15,7 @@
 </div>
 {% endif %}
 
-<form method="post" action="{% url 'register' %}">
+<form method="post" action="{{ request.get_full_path }}">
 {% csrf_token %}
 <table>
 <tr>
