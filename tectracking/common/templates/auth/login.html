@@ -23,9 +23,9 @@
     <td>{{ form.password }}</td>
 </tr>
 </table>
-
 <input type="submit" value="Login" role="button" />
-<input type="hidden" name="next" value="{{ next }}" />
+{% url 'index' as index_url %}
+<input type="hidden" name="next" value="{% firstof next index_url %}" />
 </form>
 
 {% endblock %}

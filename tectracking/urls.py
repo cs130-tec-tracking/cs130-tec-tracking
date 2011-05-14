@@ -3,17 +3,18 @@ from django.contrib.auth.views import login, logout, password_reset, password_re
     password_reset_confirm, password_reset_done
 from django.views.generic.base import RedirectView
 from tectracking.common.views import IndexView, RegisterView, RegisterCompleteView
+from tectracking.utils import reverse_lazy
 
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', RedirectView.as_view(url='/index')),
-    url(r'^index/$', IndexView.as_view()),
+    url(r'^$', RedirectView.as_view(url='/index'), name='root'),
+    url(r'^index/$', IndexView.as_view(), name='index'),
     url(r'^activities/', include('tectracking.activities.urls')),
     url(r'^inventory/', include('tectracking.inventory.urls')),
     url(r'^auth/login/$', login, {'template_name': 'auth/login.html'}),
-    url(r'^auth/logout/$', logout, {'next_page': '/index'}),
+    url(r'^auth/logout/$', logout, {'next_page': reverse_lazy('index')}),
     url(r'^auth/register/$', RegisterView.as_view(), name='register'),
     url(r'^auth/register/complete/$', RegisterCompleteView.as_view(), name='register_complete'),
     url(r'^auth/reset/$', password_reset, {'template_name': 'auth/password_reset.html',

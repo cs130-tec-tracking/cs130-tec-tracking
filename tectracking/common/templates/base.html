@@ -51,9 +51,9 @@
       </div>
       <nav>
         <ul>
-	  <li><a class="linkbutton" href="/">Home</a></li>
-          <li><a class="linkbutton" href="/activities/">Activities</a></li>
-          <li><a class="linkbutton" href="/inventory/">Inventory</a></li>
+	  <li><a class="linkbutton" href="{% url 'index' %}">Home</a></li>
+          <li><a class="linkbutton" href="{% url 'activities' %}">Activities</a></li>
+          <li><a class="linkbutton" href="{% url 'inventory' %}">Inventory</a></li>
         </ul>
       </nav>
     </header>
