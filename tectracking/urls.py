@@ -9,7 +9,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', RedirectView.as_view(url='/index'), name='root'),
+    url(r'^$', RedirectView.as_view(url=reverse_lazy('index')), name='root'),
     url(r'^index/$', IndexView.as_view(), name='index'),
     url(r'^activities/', include('tectracking.activities.urls')),
     url(r'^inventory/', include('tectracking.inventory.urls')),
