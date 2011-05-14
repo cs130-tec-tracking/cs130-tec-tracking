@@ -2,7 +2,6 @@ from models import Activity, ActivityTask
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from django.shortcuts import get_list_or_404
 
 class CalendarView(TemplateView):
     template_name = 'calendar.html'
