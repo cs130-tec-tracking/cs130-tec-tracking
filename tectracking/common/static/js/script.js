@@ -2,7 +2,7 @@
 */
 
 $("nav").buttonset();
-//$(".linkButton").button();
+$(".jsbutton").button();
 
 
 
