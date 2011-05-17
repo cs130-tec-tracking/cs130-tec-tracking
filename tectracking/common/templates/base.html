@@ -37,18 +37,18 @@
 
   <div id="container">
     <header>
-      <div id="authlinks">
+      <nav id="rightnav">
         <ul>
         {% if user.is_authenticated %}
             <li>Welcome <span id="userfullname">{{ user.get_full_name }}</span></li>
-            <li><a class="logout" href="{% url 'django.contrib.auth.views.logout' %}?next={{ request.get_full_path|urlencode:'' }}">Logout</a></li>
+            <li><a class="linkbutton" href="{% url 'django.contrib.auth.views.logout' %}?next={{ request.get_full_path|urlencode:'' }}">Logout</a></li>
         {% else %}
-            <li><a class="login" href="{% url 'django.contrib.auth.views.login' %}?next={{ request.get_full_path|urlencode:'' }}">Login</a></li>
-            <li><a class="passwordreset" href="{% url 'django.contrib.auth.views.password_reset' %}">Forgot your password?</a></li>
-            <li><a class="register" href="{% url 'register' %}">Register</a></li>
+            <li><a class="linkbutton" href="{% url 'django.contrib.auth.views.login' %}?next={{ request.get_full_path|urlencode:'' }}">Login</a></li>
+            <li><a class="linkbutton" href="{% url 'django.contrib.auth.views.password_reset' %}">Forgot your password?</a></li>
+            <li><a class="linkbutton" href="{% url 'register' %}">Register</a></li>
         {% endif %}
         </ul>
-      </div>
+      </nav>
       <nav>
         <ul>
 	  <li><a class="linkbutton" href="{% url 'index' %}">Home</a></li>
