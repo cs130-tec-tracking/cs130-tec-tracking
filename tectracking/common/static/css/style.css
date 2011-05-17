@@ -173,7 +173,7 @@ a:hover { color: #036; }
 }
 
 header {
-    padding-bottom: 15px;
+    padding-bottom: 50px;
 }
 
 header nav ul {
@@ -183,6 +183,28 @@ header nav ul {
 header nav ul li {
     display: inline;
 }
+
+#authlinks {
+    float: right;
+    text-align: center;
+}
+
+#authlinks ul {
+    list-style: none;
+}
+
+#authlinks ul li {
+}
+
+#authlinks .login {
+    clear: right;
+}
+
+#login_button {
+    float: right;
+    width: 100%;
+}
+
 /* Pad table headers and data */
 td, th { padding: 2px 5px; }
 

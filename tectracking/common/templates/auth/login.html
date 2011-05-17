@@ -11,7 +11,7 @@
 </div>
 {% endif %}
 
-<form method="post" action="{{ request.get_full_path }}">
+<form method="post" action="{{ request.get_full_path }}" >
 {% csrf_token %}
 <table>
 <tr>
@@ -22,8 +22,12 @@
     <td>{{ form.password.label_tag }}</td>
     <td>{{ form.password }}</td>
 </tr>
+<tr>
+  <td></td>
+  <td><input type="submit" value="Login" role="button"
+  class="jsbutton" id="login_button" /></td>
+</tr>
 </table>
-<input type="submit" value="Login" role="button" class="jsbutton" />
 {% url 'index' as index_url %}
 <input type="hidden" name="next" value="{% firstof next index_url %}" />
 </form>
