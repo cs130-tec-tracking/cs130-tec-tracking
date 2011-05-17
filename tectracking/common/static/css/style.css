@@ -165,11 +165,40 @@ a:hover { color: #036; }
 /**
  * Primary styles
  */
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-image: -moz-linear-gradient(top, #ffffff, #b5d1ff);
+    background-image: -webkit-gradient(linear, center top, center bottom, from(#ffffff), to(#b5d1ff));
+    background-image: -o-linear-gradient(top, #ffffff, #b5d1ff);
+    background-image: linear-gradient(top, #ffffff, #b5d1ff);
+    -moz-background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+
+/*--IE9 DOES NOT SUPPORT GRADIENT BACKGROUNDS--*/
+}
 
 #container {
     width: 800px;
     margin: 0px auto;
     padding: 5px;
+}
+
+#main {
+    padding: 20px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
+    -moz-box-shadow:0px 0px 10px #000000;
+    -webkit-box-shadow:0px 0px 10px #000000;
+    box-shadow:0px 0px 10px #000000;
+    background: white;
 }
 
 header {
