@@ -158,8 +158,12 @@ body, select, input, textarea {
 /* Headers (h1, h2, etc) have no default font-size or margin; define those yourself */
 h1, h2, h3, h4, h5, h6 { font-weight: bold; }
 
+/*
 a, a:active, a:visited { color: #607890; }
 a:hover { color: #036; }
+*/
+a, a:active, a:visited, a:hover { color: #036; }
+
 
 
 /**
@@ -183,21 +187,14 @@ body {
     height: 100%;
     margin: 0;
     background-color: #b5d1ff;
-/*
-    background-repeat: no-repeat;
-    background-image: -moz-linear-gradient(top, #ffffff, #b5d1ff);
-    background-image: -webkit-gradient(linear, center top, center bottom, from(#ffffff), to(#b5d1ff));
-    background-image: -o-linear-gradient(top, #ffffff, #b5d1ff);
-    background-image: linear-gradient(top, #ffffff, #b5d1ff);
-    -moz-background-clip: padding-box;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-*/
-/*--IE9 DOES NOT SUPPORT GRADIENT BACKGROUNDS--*/
 }
 
 .activity_header_button
 {
+	width: 100%;
+}
+
+/*
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -225,7 +222,7 @@ body {
 .activity_header_button:active {
 	position:relative;
 	top:1px;
-}
+}*/
 
 #container {
     margin: 0px auto;
