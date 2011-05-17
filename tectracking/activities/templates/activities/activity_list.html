@@ -3,20 +3,23 @@
 {% block title %}{{ block.super }} | Activities{% endblock %}
 
 {% block content %}
+
+
+<!--<div class="ui-icon"></div>-->
 <table class='center'>
-    <thead>
-        <th>Tec ID</th>
-        <th>Event Type</th>
-        <th>Event Title</th>
-        <th>Event Start Date</th>
+    <thead >
+        <th><a class="activity_header_button">Tec ID</a></th>
+        <th><a class="activity_header_button">Event Type</a></th>
+        <th><a class="activity_header_button">Event Title</a></th>
+        <th><a class="activity_header_button">Event Start Date</a></th>
     </thead>
     <tbody>
         {% for activity in activity_list %}
         <tr>
-            <td>{{ activity.tec_id }}</td>
-            <td>{{ activity.event_type }}</td>
-            <td>{{ activity.short_desc }}</td>
-            <td>{{ activity.event_start_date }}</td>
+        <td>{{ activity.tec_id }}</td>
+        <td>{{ activity.event_type }}</td>
+        <td>{{ activity.short_desc }}</td>
+        <td>{{ activity.event_start_date }}</td>
         </tr>
         {% endfor %}
     </tbody>

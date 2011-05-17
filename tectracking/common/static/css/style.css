@@ -182,6 +182,7 @@ html {
 body {
     height: 100%;
     margin: 0;
+    background-color: #b5d1ff;
 /*
     background-repeat: no-repeat;
     background-image: -moz-linear-gradient(top, #ffffff, #b5d1ff);
@@ -195,25 +196,62 @@ body {
 /*--IE9 DOES NOT SUPPORT GRADIENT BACKGROUNDS--*/
 }
 
-#container {
+.activity_header_button
+{
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+	background-color:#ededed;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#777777;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 0px;
+	width: 100%;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #ffffff;
+}
+.activity_header_button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+	background-color:#dfdfdf;
+}
+.activity_header_button:active {
+	position:relative;
+	top:1px;
+}
 
+#container {
     margin: 0px auto;
     padding: 5px;
 }
 
 #main {
-    padding: 20px;
+    padding: 10px;
     -moz-border-radius:10px;
     -webkit-border-radius:10px;
     border-radius:10px;
-    -moz-box-shadow:0px 0px 10px #000000;
+    border-style:solid;
+    border-width:2px;
+/*    -moz-box-shadow:0px 0px 10px #000000;
     -webkit-box-shadow:0px 0px 10px #000000;
     box-shadow:0px 0px 10px #000000;
-    background: white;
+    background: white;*/
+    background-color: #CCC;
+    background-image: -moz-linear-gradient(top, #EEE, #BBB);
+    background-image: -webkit-gradient(linear, center top, center bottom, from(#EEE), to(#BBB));
+    background-image: -o-linear-gradient(top, #EEE, #BBB);
+    background-image: linear-gradient(top, #EEE, #BBB);
 }
 
 header {
-    padding-bottom: 50px;
+    padding-bottom: 30px;
 }
 
 header nav ul {
@@ -225,7 +263,7 @@ header nav ul li {
 }
 
 /* Pad table headers and data */
-td, th { padding: 2px 5px; }
+td { padding: 2px 15px; }
 
 /**
  * Non-semantic helper classes: please define your styles before this section.

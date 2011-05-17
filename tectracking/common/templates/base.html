@@ -40,7 +40,7 @@
       <nav id="rightnav">
         <ul>
         {% if user.is_authenticated %}
-            <li>Welcome <span id="userfullname">{{ user.get_full_name }}</span></li>
+            <li class="linkbutton">Welcome <span id="userfullname">{{ user.get_full_name }}</span></li>
             <li><a class="linkbutton" href="{% url 'django.contrib.auth.views.logout' %}?next={{ request.get_full_path|urlencode:'' }}">Logout</a></li>
         {% else %}
             <li><a class="linkbutton" href="{% url 'django.contrib.auth.views.login' %}?next={{ request.get_full_path|urlencode:'' }}">Login</a></li>
