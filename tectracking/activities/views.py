@@ -2,12 +2,32 @@ from models import Activity, ActivityTask
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
+from tectracking.activities.models import Assignment
 
 class CalendarView(TemplateView):
     template_name = 'calendar.html'
 
 class ActivityListView(ListView):
     model = Activity
+
+    def get_context_data(self, **kwargs):
+        if self.request.user.is_authenticated():
+            assignments = Assignment.objects.filter(user=self.request.user)
+        else:
+            assignments = None
+
+        if self.request.user.has_perm('activities.can_accept_activity'):
+            unassigned_activities = Activity.objects.filter(status='N')
+        else:
+            unassigned_activities = None
+
+        context = {
+            'assignments': assignments,
+            'unassigned_activities': unassigned_activities,
+
+        }
+        kwargs.update(context)
+        return super(ActivityListView, self).get_context_data(**kwargs)
 
 class ActivityDetailView(DetailView):
     model = Activity
