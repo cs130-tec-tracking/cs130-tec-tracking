@@ -6,6 +6,14 @@
 
 {% block content %}
 
+{% for message in messages %}
+<div class="ui-state-highlight ui-corner-all"><p><span class="ui-icon ui-icon-info"></span>{{ message }}</p></div>
+{% endfor %}
+
+{% for error in errors %}
+<div class="ui-state-error ui-corner-all"><p><span class="ui-icon ui-icon-alert"></span>{{ error }}</p></div>
+{% endfor %}
+
 {% if perms.activites.can_accept_activity %}
 <h2>Activities needing assignment</h2>
 {% if unassigned_activities %}
