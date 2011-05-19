@@ -15,23 +15,29 @@
 {% endfor %}
 
 {% if perms.activites.can_accept_activity %}
+<div class = "content_block">
 <h2>Activities needing assignment</h2>
 {% if unassigned_activities %}
 <table>
     <thead>
         <tr>
-            <th>TEC ID</th><th>Event Type</th><th>Event Title</th><th>Organizer</th><th>Start Date</th><th>Actions</th>
+		<th><span class="activity_head">TEC ID</span></th>
+		<th><span class="activity_head">Event Type</span></th>
+		<th><span class="activity_head">Event Title</span></th>
+		<th><span class="activity_head">Organizer</span></th>
+		<th><span class="activity_head">Start Date</span></th>
+		<th><span class="activity_head">Actions</span></th>
         </tr>
     </thead>
     <tbody>
         {% for activity in unassigned_activities %}
             <tr>
-                <td><a href="{% url 'activity_detail' activity.tec_id %}"><span class="ui-icon ui-icon-search"></span>{{ activity.tec_id }}</a></td>
-                <td>{{ activity.event_type }}</td>
-                <td>{{ activity.short_desc }}</td>
-                <td>{{ activity.event_organizer }}</td>
-                <td>{{ activity.event_start_date }}</td>
-                <td><a href="{% url 'activity_detail' activity.tec_id %}" class="actionlink">Assign</a></td>
+                <td class="{% cycle 'row_one' 'row_two' %}"><a href="{% url 'activity_detail' activity.tec_id %}"><span class="ui-icon ui-icon-search"></span>{{ activity.tec_id }}</a></td>
+                <td class="{% cycle 'row_one' 'row_two' %}">{{ activity.event_type }}</td>
+                <td class="{% cycle 'row_one' 'row_two' %}">{{ activity.short_desc }}</td>
+                <td class="{% cycle 'row_one' 'row_two' %}">{{ activity.event_organizer }}</td>
+                <td class="{% cycle 'row_one' 'row_two' %}">{{ activity.event_start_date }}</td>
+                <td class="{% cycle 'row_one' 'row_two' %}"><a href="{% url 'activity_detail' activity.tec_id %}" class="actionlink">Assign</a></td>
             </tr>
         {% endfor %}
     </tbody>
@@ -39,9 +45,13 @@
 {% else %}
 <p>There are no unassigned activities,</p>
 {% endif %}
+</div>
 {% endif %}
 
+
+
 {% if perms.activities.can_approve_activity %}
+<div class="content_block">
 <h2>Newly Assigned Activities</h2>
 {% with accepted_activities=assignments|accepted %}
 {% if accepted_activities %}
@@ -69,9 +79,13 @@
 <p>You do not have any assigned activities.</p>
 {% endif %}
 {% endwith %}
+</div>
 {% endif %}
 
+
+
 {% if user.is_authenticated %}
+<div class="content_block">
 <h2>Active Assigned Activities</h2>
 {% with active_activities=assignments|incomplete %}
 {% if active_activities %}
@@ -98,10 +112,15 @@
 <p>You do not have any active activities.</p>
 {% endif %}
 {% endwith %}
+</div>
 {% endif %}
 
+
+<div class="content_block">
 <div id='calendar'></div>
+</div>
 {% endblock %}
+
 
 {% block scripts %}
 <script type='text/javascript'>
