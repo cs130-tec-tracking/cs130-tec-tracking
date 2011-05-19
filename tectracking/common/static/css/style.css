@@ -264,6 +264,10 @@ a span.ui-icon, p span.ui-icon {
 	margin-right: 2px;
 }
 
+div.ui-state-error, div.ui-state-highlight {
+	padding: 0.5em;
+}
+
 /* Pad table headers and data */
 td { padding: 2px 15px; }
 

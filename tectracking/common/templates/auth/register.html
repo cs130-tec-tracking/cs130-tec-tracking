@@ -5,8 +5,8 @@
 {% block content %}
 
 {% if form.errors %}
-<div class="error">
-    <p>Please correct these errors:</p>
+<div class="ui-state-error ui-corner-all">
+	<p><span class="ui-icon ui-icon-alert"></span><strong>Please correct these errors:</strong></p>
     <ul id="errorlist"'>
     {% for field in form %}
         {% for error in field.errors %}<li>{{ field.label }}: {{ error|escape }}</li>{% endfor %}
