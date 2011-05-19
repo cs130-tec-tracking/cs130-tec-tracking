@@ -188,7 +188,7 @@ body {
     width: 940px;
     margin: 0;
     background-color: #b5d1ff;
-    
+
 }
 
 .activity_head
@@ -264,9 +264,12 @@ a span.ui-icon, p span.ui-icon {
 	margin-right: 2px;
 }
 
-h2{
+h2 {
 	margin-bottom: 5px;
+}
 
+div.ui-state-error, div.ui-state-highlight {
+	padding: 0.5em;
 }
 
 /* Pad table headers and data */
