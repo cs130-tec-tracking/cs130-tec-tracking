@@ -234,6 +234,11 @@ header nav ul li {
     width: 100%;
 }
 
+a span.ui-icon {
+	float: left;
+	margin-right: 2px;
+}
+
 /* Pad table headers and data */
 td, th { padding: 2px 5px; }
 

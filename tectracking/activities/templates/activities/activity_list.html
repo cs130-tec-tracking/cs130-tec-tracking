@@ -1,24 +1,159 @@
 {% extends "base.html" %}
+{% load activity_tags %}
+{% load url from future %}
 
 {% block title %}{{ block.super }} | Activities{% endblock %}
 
 {% block content %}
-<table class='center'>
+
+{% if perms.activites.can_accept_activity %}
+<h2>Activities needing assignment</h2>
+{% if unassigned_activities %}
+<table>
     <thead>
-        <th>Tec ID</th>
-        <th>Event Type</th>
-        <th>Event Title</th>
-        <th>Event Start Date</th>
+        <tr>
+            <th>TEC ID</th><th>Event Type</th><th>Event Title</th><th>Organizer</th><th>Start Date</th><th>Actions</th>
+        </tr>
     </thead>
     <tbody>
-        {% for activity in activity_list %}
-        <tr>
-            <td>{{ activity.tec_id }}</td>
-            <td>{{ activity.event_type }}</td>
-            <td>{{ activity.short_desc }}</td>
-            <td>{{ activity.event_start_date }}</td>
-        </tr>
+        {% for activity in unassigned_activities %}
+            <tr>
+                <td><a href="{% url 'activity_detail' activity.tec_id %}"><span class="ui-icon ui-icon-search"></span>{{ activity.tec_id }}</a></td>
+                <td>{{ activity.event_type }}</td>
+                <td>{{ activity.short_desc }}</td>
+                <td>{{ activity.event_organizer }}</td>
+                <td>{{ activity.event_start_date }}</td>
+                <td><a href="{% url 'activity_detail' activity.tec_id %}" class="actionlink">Assign</a></td>
+            </tr>
         {% endfor %}
     </tbody>
 </table>
+{% else %}
+<p>There are no unassigned activities,</p>
+{% endif %}
+{% endif %}
+
+{% if perms.activities.can_approve_activity %}
+<h2>Newly Assigned Activities</h2>
+{% with accepted_activities=assignments|accepted %}
+{% if accepted_activities %}
+<table>
+    <thead>
+        <tr>
+            <th>TEC ID</th><th>Priority</th><th>Event Type</th><th>Event Title</th><th>Start Date</th><th>Escalation Status</th><th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for assignment in accepted_activities %}
+            <tr>
+                <td><a href="{% url 'activity_detail' assignment.activity.tec_id %}"><span class="ui-icon ui-icon-search"></span>{{ assignment.activity.tec_id }}</a></td>
+                <td>{{ assignment.priority }}</td>
+                <td>{{ activity.event_type }}</td>
+                <td>{{ activity.short_desc }}</td>
+                <td>{{ activity.event_start_date }}</td>
+                <td>{{ assignment.escalation_status }}</td>
+                <td><a href="{% url 'activity_detail' assignment.activity.tec_id %}" class="actionlink">Accept</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>You do not have any assigned activities.</p>
+{% endif %}
+{% endwith %}
+{% endif %}
+
+{% if user.is_authenticated %}
+<h2>Active Assigned Activities</h2>
+{% with active_activities=assignments|incomplete %}
+{% if active_activities %}
+<table>
+    <thead>
+        <tr>
+            <th>TEC ID</th><th>Priority</th><th>Event Type</th><th>Event Title</th><th>Start Date</th><th>Escalation Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for assignment in active_activities %}
+            <tr>
+                <td><a href="{% url 'activity_detail' assignment.activity.tec_id %}"><span class="ui-icon ui-icon-search"></span>{{ assignment.activity.tec_id }}</a></td>
+                <td>{{ assignment.priority }}</td>
+                <td>{{ activity.event_type }}</td>
+                <td>{{ activity.short_desc }}</td>
+                <td>{{ activity.event_start_date }}</td>
+                <td>{{ assignment.escalation_status }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>You do not have any active activities.</p>
+{% endif %}
+{% endwith %}
+{% endif %}
+
+<div id='calendar'></div>
+{% endblock %}
+
+{% block scripts %}
+<script type='text/javascript'>
+    $(document).ready(function() {
+    
+        var date = new Date();
+        var d = date.getDate();
+        var m = date.getMonth();
+        var y = date.getFullYear();
+        
+        $('#calendar').fullCalendar({
+            editable: true,
+            events: [
+                {
+                    title: 'All Day Event',
+                    start: new Date(y, m, 1)
+                },
+                {
+                    title: 'Long Event',
+                    start: new Date(y, m, d-5),
+                    end: new Date(y, m, d-2)
+                },
+                {
+                    id: 999,
+                    title: 'Repeating Event',
+                    start: new Date(y, m, d-3, 16, 0),
+                    allDay: false
+                },
+                {
+                    id: 999,
+                    title: 'Repeating Event',
+                    start: new Date(y, m, d+4, 16, 0),
+                    allDay: false
+                },
+                {
+                    title: 'Meeting',
+                    start: new Date(y, m, d, 10, 30),
+                    allDay: false
+                },
+                {
+                    title: 'Lunch',
+                    start: new Date(y, m, d, 12, 0),
+                    end: new Date(y, m, d, 14, 0),
+                    allDay: false
+                },
+                {
+                    title: 'Birthday Party',
+                    start: new Date(y, m, d+1, 19, 0),
+                    end: new Date(y, m, d+1, 22, 30),
+                    allDay: false
+                },
+                {
+                    title: 'Click for Google',
+                    start: new Date(y, m, 28),
+                    end: new Date(y, m, 29),
+                    url: 'http://google.com/'
+                }
+            ]
+        });
+        
+    });
+</script>
 {% endblock %}
