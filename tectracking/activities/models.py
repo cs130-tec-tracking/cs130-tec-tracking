@@ -106,9 +106,15 @@ class ActivityTask(models.Model):
         )
 
 class Assignment(models.Model):
+    PRIORITY_CHOICES = (
+        (1, u'High Priority'),
+        (2, u'Normal Priority'),
+        (3, u'Low Priority'),
+    )
+
     activity = models.OneToOneField(Activity, db_column='tec_id')
     user = models.ForeignKey(User, db_column='auth_user_id')
-    priority = models.SmallIntegerField()
+    priority = models.SmallIntegerField(choices=PRIORITY_CHOICES, default=2)
     escalation_status = models.CharField(max_length=300, null=True, blank=True)
 
     class Meta:
