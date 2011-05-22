@@ -37,7 +37,12 @@
                 <td class="{% cycle 'row_one' 'row_two' %}">{{ activity.short_desc }}</td>
                 <td class="{% cycle 'row_one' 'row_two' %}">{{ activity.event_organizer }}</td>
                 <td class="{% cycle 'row_one' 'row_two' %}">{{ activity.event_start_date }}</td>
-                <td class="{% cycle 'row_one' 'row_two' %}"><a href="{% url 'activity_detail' activity.tec_id %}" class="actionlink">Assign</a></td>
+                <td class="{% cycle 'row_one' 'row_two' %}">
+                  <a href="#"
+                  onclick="show_assign_dialog('{{activity.tec_id }}',
+                  '{{ activity.short_desc }}')"
+                  class="actionlink">Assign</a>
+                </td>
             </tr>
         {% endfor %}
     </tbody>
@@ -119,12 +124,38 @@
 <div class="content_block">
 <div id='calendar'></div>
 </div>
+
+<div id="assign_dialog">
+  <form id="assign_form">
+    <div style="clear: right;">
+      <span id="assign_tec_id">TEC ID:</span>
+      <br />
+      <span id="assign_event_title">Event Title:</span>
+    </div>
+    <span>Assign to user: </span>
+    <select id="assign_select">
+      {% for user in users %}
+        <option value="{{user.id}}">{{user.first_name}}
+        {{user.last_name}}</option>
+      {% endfor %}
+    </select>
+    <input type="submit" value="Assign" class="jsbutton" />
+  </form>
+</div>
 {% endblock %}
 
 
 {% block scripts %}
 <script type='text/javascript'>
+    function show_assign_dialog(id, title) {
+        $("#assign_tec_id").text("TEC ID: " + id);
+        $("#assign_event_title").text("Event Title: " + title);
+        $("#assign_dialog").dialog("open");
+    };
+
     $(document).ready(function() {
+        $("#assign_dialog").dialog({autoOpen: false,
+    title: 'Assign Activity', resizable: false});
 
         var date = new Date();
         var d = date.getDate();

@@ -9,7 +9,7 @@ $("nav").buttonset();
 });*/
 
 /*$("#radio1").buttonset();*/
-/*$(".jsbutton").button();*/
+$(".jsbutton").button();
 /*$("#authlinks .login").button();*/
 $(".linkbutton").button();
 

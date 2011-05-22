@@ -1,4 +1,5 @@
 from models import Activity, ActivityTask
+from django.contrib.auth.models import User
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
@@ -18,13 +19,15 @@ class ActivityListView(ListView):
 
         if self.request.user.has_perm('activities.can_accept_activity'):
             unassigned_activities = Activity.objects.filter(status='N')
+            users = User.objects.filter(is_active='Y')
         else:
             unassigned_activities = None
+            users = None
 
         context = {
             'assignments': assignments,
             'unassigned_activities': unassigned_activities,
-
+            'users': users,
         }
         kwargs.update(context)
         return super(ActivityListView, self).get_context_data(**kwargs)
