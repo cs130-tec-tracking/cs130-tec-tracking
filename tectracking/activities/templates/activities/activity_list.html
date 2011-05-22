@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load activity_tags %}
+{% load common_tags %}
 {% load url from future %}
 
 {% block title %}{{ block.super }} | Activities{% endblock %}
@@ -159,15 +160,30 @@
 
         $('#calendar').fullCalendar({
             editable: false,
-            events: [{% for activity in unassigned_activities %}
-                {
-                    id: '{{activity.tec_id}}',
-                    title: '{{activity.short_desc}}',
-                    start: new Date('{{activity.event_start_date}}'),
-                    end: new Date('{{activity.event_end_date}}'),
-                    url: "{% url 'activity_detail' activity.tec_id %}",
-                },
-            {% endfor %}
+            events: [
+			{% if user.is_authenticated and not user|in_group:"manager" %}
+				{% for assignment in assignments %}
+				{% with activity=assignment.activity %}
+					{
+	                    id: '{{activity.tec_id}}',
+	                    title: '{{activity.short_desc}}',
+	                    start: new Date('{{activity.event_start_date}}'),
+	                    end: new Date('{{activity.event_end_date}}'),
+	                    url: "{% url 'activity_detail' activity.tec_id %}",
+	                },
+				{% endwith %}
+				{% endfor %}
+			{% else %}
+				{% for activity in activities %}
+	                {
+	                    id: '{{activity.tec_id}}',
+	                    title: '{{activity.short_desc}}',
+	                    start: new Date('{{activity.event_start_date}}'),
+	                    end: new Date('{{activity.event_end_date}}'),
+	                    url: "{% url 'activity_detail' activity.tec_id %}",
+	                },
+	            {% endfor %}
+			{% endif %}
             ]
         });
 

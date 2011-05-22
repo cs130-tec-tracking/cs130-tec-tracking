@@ -12,6 +12,8 @@ class ActivityListView(ListView):
     model = Activity
 
     def get_context_data(self, **kwargs):
+        activities = Activity.objects.all()
+
         if self.request.user.is_authenticated():
             assignments = Assignment.objects.filter(user=self.request.user)
         else:
@@ -28,7 +30,7 @@ class ActivityListView(ListView):
             'assignments': assignments,
             'unassigned_activities': unassigned_activities,
             'users': users,
-            'activities': Activity.objects,
+            'activities': activities,
         }
         kwargs.update(context)
         return super(ActivityListView, self).get_context_data(**kwargs)
