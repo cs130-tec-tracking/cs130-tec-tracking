@@ -28,6 +28,7 @@ class ActivityListView(ListView):
             'assignments': assignments,
             'unassigned_activities': unassigned_activities,
             'users': users,
+            'activities': Activity.objects,
         }
         kwargs.update(context)
         return super(ActivityListView, self).get_context_data(**kwargs)
