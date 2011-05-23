@@ -181,22 +181,22 @@ html {
 }
 
 body {
-    height: 100%;
-    width: 950px;
+    /*height: 100%;
+	width:100%;*/
     margin: 0;
     background-color: #b5d1ff;
-
+/*	background-image: -moz-linear-gradient(top, #EEE, #b5d1ff);
+	background-image: -webkit-gradient(linear, center top, center bottom, from(#EEE), to(#b5d1ff));
+	background-image: -o-linear-gradient(top, #EEE, #b5d1ff);
+	background-image: linear-gradient(top, #EEE, #b5d1ff);*/
 }
 
 #container {
-	/*width: 75%;*/
-	margin: auto;
+/*	width: 75%;
+height:100%;*/
+	/*margin: auto;*/
 	padding: 5px;
-	    background-color: #CCC;
-	    background-image: -moz-linear-gradient(top, #EEE, #b5d1ff);
-	    background-image: -webkit-gradient(linear, center top, center bottom, from(#EEE), to(#b5d1ff));
-	    background-image: -o-linear-gradient(top, #EEE, #b5d1ff);
-	    background-image: linear-gradient(top, #EEE, #b5d1ff);
+
 }
 
 .activity_head
@@ -248,17 +248,12 @@ body {
     background: white;
 
 
+}
 
-
-/*
-    border-style:solid;
-    border-width:2px;
-    background-color: #CCC;
-    background-image: -moz-linear-gradient(top, #EEE, #BBB);
-    background-image: -webkit-gradient(linear, center top, center bottom, from(#EEE), to(#BBB));
-    background-image: -o-linear-gradient(top, #EEE, #BBB);
-    background-image: linear-gradient(top, #EEE, #BBB);
-*/
+label {
+	display:block;
+	float:left;
+	width:150px;
 }
 
 #calender_block{

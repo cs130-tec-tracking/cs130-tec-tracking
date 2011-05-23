@@ -13,6 +13,7 @@
 {% endfor %}
 
 <div id="activitydetail">
+<div class="content_block">
 <p><label for="tec_id">TEC ID: </label><span id="tec_id">{{ activity.tec_id }}</span></p>
 <p><label for="approved_id">Approved ID: </label><span id="approved_id">{{ activity.approved_id|default:"Not Approved" }}</span></p>
 <p><label for="event_type">Event Type: </label><span id="event_type">{{ activity.event_type }}</span></p>
@@ -33,6 +34,7 @@
 <p><label for="room_required">Room Required: </label><span id="room_required">{{ activity.get_room_required_display }}</span></p>
 <p><label for="laptops_required">Laptops Required: </label><span id="laptops_required">{{ activity.get_laptops_required_display }}</span></p>
 <p><label for="status">Status: </label><span id="status">{{ activity.get_status_display }}</span></p>
+</div>
 </div>
 
 <h2>Assignment</h2>
