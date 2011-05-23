@@ -137,6 +137,7 @@ INSTALLED_APPS = (
     'common',
     'activities',
     'inventory',
+    'reporting',
 )
 
 # A sample logging configuration. The only tangible logging

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} | Activities Report{% endblock %}
+
+{% block content %}
+
+<table id="activity_report">
+	<thead>
+	<tr>
+		<th>TEC ID</th>
+		<th>Approved ID</th>
+		<th>Event Type</th>
+		<th>Event Title</th>
+		<th>Reservation Description</th>
+		<th>TEC Site</th>
+		<th>Event Location</th>
+		<th>Event Start Date</th>
+		<th>Event End Date</th>
+		<th>Event Organizer</th>
+		<th>Date Entered</th>
+		<th>Last Modified</th>
+		<th>Event Size</th>
+		<th>Sponsor Manager</th>
+		<th>Class Manager</th>
+		<th>Siebel Number</th>
+		<th>Number of Attendees</th>
+		<th>Room Required</th>
+		<th>Laptops Required</th>
+		<th>Status</th>
+		<th>Assigned To</th>
+		<th>Priority</th>
+		<th>Escalation Status</th>
+	</tr>
+	</thead>
+	<tbody>
+	{% for activity in activity_list %}
+	<tr>
+		<td>{{ activity.tec_id }}</td>
+		<td>{{ activity.approved_id|default:'Not Approved' }}</td>
+		<td>{{ activity.event_type }}</td>
+		<td>{{ activity.short_desc }}</td>
+		<td>{{ activity.reservation_desc }}</td>
+		<td>{{ activity.tec_site }}</td>
+		<td>{{ activity.event_location }}</td>
+		<td>{{ activity.event_start_date }}</td>
+		<td>{{ activity.event_end_date }}</td>
+		<td>{{ activity.event_organizer }}</td>
+		<td>{{ activity.date_entered }}</td>
+		<td>{{ activity.date_last_mod|default:'Not Provided' }}</td>
+		<td>{{ activity.event_size|default:'Not Provided' }}</td>
+		<td>{{ activity.sponsor_mgr|default:'Not Provided' }}</td>
+		<td>{{ activity.class_mgr|default:'Not Provided' }}</td>
+		<td>{{ activity.siebel_num|default:'Not Provided' }}</td>
+		<td>{{ activity.num_attendees }}</td>
+		<td>{{ activity.get_room_required_display }}</td>
+		<td>{{ activity.get_laptops_required_display }}</td>
+		<td>{{ activity.get_status_display }}</td>
+		<td>{{ activity.assignment.user.get_full_name }}</td>
+		<td>{{ activity.assignment.get_priority_display }}</td>
+		<td>{{ activity.assignment.escalation_status }}</td>
+	</tr>
+	{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}
+
+{% block scripts %}
+<script type='text/javascript'>
+    $(document).ready(function() {
+        $('#activity_report').dataTable({
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers",
+            "oLanguage": {
+                "sSearch": "Search all columns:"
+            }
+        });
+    });
+</script>
+{% endblock %}
