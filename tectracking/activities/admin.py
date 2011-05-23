@@ -21,7 +21,7 @@ class NoteInline(admin.TabularInline):
     extra = 1
 
 class ActivityAdmin(admin.ModelAdmin):
-    list_display = ('tec_id', 'event_type', 'short_desc', 'event_start_date', 'siebel_num', 'num_attendees',)
+    list_display = ('tec_id', 'approved_id', 'event_type', 'short_desc', 'event_start_date', 'siebel_num', 'num_attendees',)
     list_filter = ('assignment__user', 'event_type', 'tec_site', 'num_attendees', 'room_required', 'laptops_required',)
     search_fields = ('assignment__user__first_name', 'assignment__user__last_name', 'siebel_num', 'event_organizer', 'event_type', 'tec_site',)
     inlines = (AssignmentInline, ActivityTaskInline, NoteInline, RoomReservationInline,)
