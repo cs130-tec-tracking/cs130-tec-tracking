@@ -3,7 +3,7 @@
 {% block title %}{{ block.super }} | Activities Report{% endblock %}
 
 {% block content %}
-
+<div class="content_block">
 <table id="activity_report">
 	<thead>
 	<tr>
@@ -34,7 +34,7 @@
 	</thead>
 	<tbody>
 	{% for activity in activity_list %}
-	<tr>
+	<tr class="{% cycle 'row_one' 'row_two' %}">
 		<td>{{ activity.tec_id }}</td>
 		<td>{{ activity.approved_id|default:'Not Approved' }}</td>
 		<td>{{ activity.event_type }}</td>
@@ -62,7 +62,7 @@
 	{% endfor %}
 	</tbody>
 </table>
-
+</div>
 {% endblock %}
 
 {% block scripts %}

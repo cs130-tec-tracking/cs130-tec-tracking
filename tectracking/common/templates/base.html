@@ -61,7 +61,12 @@
 
     <div id="main" role="main">
 	 <center>
-      {% block content %}{% endblock %}
+	{% block content %}
+	<div class="content_block">
+	<h2>IBM Tec-Tracking</h2>
+	Please make a selection from the menu above.
+	</div>
+	{% endblock %}
 	</center>
     </div>
     <footer>
