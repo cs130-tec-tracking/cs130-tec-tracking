@@ -27,6 +27,11 @@ class ActivityAdmin(admin.ModelAdmin):
     inlines = (AssignmentInline, ActivityTaskInline, NoteInline, RoomReservationInline,)
     date_hierarchy = 'event_start_date'
 
+class ActivityTaskAdmin(admin.ModelAdmin):
+    list_display = ('activity', 'task', 'status', 'assigned_user',)
+    list_filter = ('assigned_user',)
+    search_fields = ('assigned__user__first_name', 'assigned_user__last_name', 'task__name', 'activity__tec_id', 'activity__approved_id', 'activity__siebel_num',)
+
 class RoomAdmin(admin.ModelAdmin):
     list_display = ('location', 'capacity', 'num_workstations',)
     list_filter = ('capacity', 'num_workstations',)
@@ -54,6 +59,7 @@ class NoteAdmin(admin.ModelAdmin):
     search_fields = ('user__first_name', 'user__last_name', 'activity__tec_id',)
 
 admin.site.register(Activity, ActivityAdmin)
+admin.site.register(ActivityTask, ActivityTaskAdmin)
 admin.site.register(Room, RoomAdmin)
 admin.site.register(RoomReservation, RoomReservationAdmin)
 admin.site.register(Task, TaskAdmin)
