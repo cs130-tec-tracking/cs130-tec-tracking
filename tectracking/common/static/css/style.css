@@ -184,8 +184,10 @@ body {
     /*height: 100%;
 	width:100%;*/
     margin: 0;
+    background-color: #DDD;
+/*
     background-color: #b5d1ff;
-/*	background-image: -moz-linear-gradient(top, #EEE, #b5d1ff);
+	background-image: -moz-linear-gradient(top, #EEE, #b5d1ff);
 	background-image: -webkit-gradient(linear, center top, center bottom, from(#EEE), to(#b5d1ff));
 	background-image: -o-linear-gradient(top, #EEE, #b5d1ff);
 	background-image: linear-gradient(top, #EEE, #b5d1ff);*/
@@ -195,7 +197,7 @@ body {
 /*	width: 75%;
 height:100%;*/
 	/*margin: auto;*/
-	padding: 5px;
+	padding: 15px;
 
 }
 
@@ -226,14 +228,15 @@ height:100%;*/
 */
 
 .row_one {
-	background-color:#b5d1ff;
+/*	background-color:#b5d1ff;*/
+	background-color:#B9D5ff;
 }
 .row_two {
 	background-color:#ededed;
 }
 
 .content_block {
-    width: 900px;
+   /* width: 900px;*/
     margin: auto;
     margin-bottom:25px;
     padding: 10px;
@@ -245,19 +248,11 @@ height:100%;*/
     -moz-box-shadow:0px 0px 10px #000000;
     -webkit-box-shadow:0px 0px 10px #000000;
     box-shadow:0px 0px 10px #000000;
-    background: white;
-
-
-}
-
-label {
-	display:block;
-	float:left;
-	width:150px;
+    background: #F3F3F3;
 }
 
 #calender_block{
-   width: 900px;
+/*   width: 900px;*/
     margin: auto;
     margin-bottom:10px;
     padding: 10px;
@@ -268,7 +263,7 @@ label {
     -moz-box-shadow:0px 0px 10px #000000;
     -webkit-box-shadow:0px 0px 10px #000000;
     box-shadow:0px 0px 10px #000000;
-    background: white;
+    background-color: #FEFEFE;
 }
 
 .detail_left_label
@@ -278,6 +273,7 @@ label {
 
 header {
     padding-bottom: 30px;
+	width:900px;
 }
 
 header nav ul {

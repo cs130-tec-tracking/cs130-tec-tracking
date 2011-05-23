@@ -13,8 +13,9 @@
     {% endfor %}
     </ul>
 </div>
+<br />
 {% endif %}
-
+<div class="content_block" style="width:550px;">
 <form method="post" action="{{ request.get_full_path }}">
 {% csrf_token %}
 <table>
@@ -47,5 +48,5 @@
 <input type="submit" value="Register" role="button" class="jsbutton" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
-
+</div>
 {% endblock %}
