@@ -16,7 +16,7 @@
 {% endfor %}
 
 {% if perms.activites.can_accept_activity %}
-<div class = "content_block">
+<div class="content_block">
 <h2>Activities needing assignment</h2>
 {% if unassigned_activities %}
 <table>
@@ -48,13 +48,12 @@
         {% endfor %}
     </tbody>
 </table>
+<p>Total unassigned activities: <span class="totalcount">{{ unassigned_activities|length }}</span></p>
 {% else %}
 <p>There are no unassigned activities.</p>
 {% endif %}
 </div>
 {% endif %}
-
-
 
 {% if perms.activities.can_approve_activity %}
 <div class="content_block">
@@ -87,6 +86,7 @@
         {% endfor %}
     </tbody>
 </table>
+<p>Total accepted activities: <span class="totalcount">{{ accepted_activities|length }}</span></p>
 {% else %}
 <p>You do not have any assigned activities.</p>
 {% endif %}
@@ -125,6 +125,7 @@
         {% endfor %}
     </tbody>
 </table>
+<p>Total active activities: <span class="totalcount">{{ active_activities|length }}</span></p>
 {% else %}
 <p>You do not have any active activities.</p>
 {% endif %}
