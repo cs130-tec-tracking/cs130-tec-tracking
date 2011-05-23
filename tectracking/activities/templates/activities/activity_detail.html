@@ -3,5 +3,76 @@
 {% block title %}{{ block.super }} | Activities{% endblock %}
 
 {% block content %}
-{{ activity }}
+
+{% for message in messages %}
+<div class="ui-state-highlight ui-corner-all"><p><span class="ui-icon ui-icon-info"></span>{{ message }}</p></div>
+{% endfor %}
+
+{% for error in errors %}
+<div class="ui-state-error ui-corner-all"><p><span class="ui-icon ui-icon-alert"></span>{{ error }}</p></div>
+{% endfor %}
+
+<div id="activitydetail">
+<p><label for="tec_id">TEC ID: </label><span id="tec_id">{{ activity.tec_id }}</span></p>
+<p><label for="approved_id">Approved ID: </label><span id="approved_id">{{ activity.approved_id|default:"Not Approved" }}</span></p>
+<p><label for="event_type">Event Type: </label><span id="event_type">{{ activity.event_type }}</span></p>
+<p><label for="short_desc">Event Title: </label><span id="short_desc">{{ activity.short_desc }}</span></p>
+<p><label for="reservation_desc">Reservation Description: </label><span id="reservation_desc">{{ activity.reservation_desc }}</span></p>
+<p><label for="tec_site">TEC Site: </label><span id="tec_site">{{ activity.tec_site }}</span></p>
+<p><label for="event_location">Event Location: </label><span id="event_location">{{ activity.event_location }}</span></p>
+<p><label for="event_start_date">Event Start Date: </label><span id="event_start_date">{{ activity.event_start_date }}</span></p>
+<p><label for="event_end_date">Event End Date: </label><span id="event_end_date">{{ activity.event_end_date }}</span></p>
+<p><label for="event_organizer">Event Organizer: </label><span id="event_organizer">{{ activity.event_organizer }}</span></p>
+<p><label for="date_entered">Date Entered: </label><span id="date_entered">{{ activity.date_entered }}</span></p>
+<p><label for="date_last_mod">Last Modified: </label><span id="date_last_mod">{{ activity.date_last_mod|default:"Not Provided" }}</span></p>
+<p><label for="event_size">Event Size: </label><span id="event_size">{{ activity.event_size|default:"Not Provided" }}</span></p>
+<p><label for="sponsor_mgr">Sponsor Manager: </label><span id="sponsor_mgr">{{ activity.sponsor_mgr|default:"Not Provided" }}</span></p>
+<p><label for="class_mgr">Class Manager: </label><span id="class_mgr">{{ activity.class_mgr|default:"Not Provided" }}</span></p>
+<p><label for="siebel_num">Siebel Number: </label><span id="siebel_num">{{ activity.siebel_num|default:"Not Provided" }}</span></p>
+<p><label for="num_attendees">Number of Attendees: </label><span id="num_attendees">{{ activity.num_attendees }}</span></p>
+<p><label for="room_required">Room Required: </label><span id="room_required">{{ activity.get_room_required_display }}</span></p>
+<p><label for="laptops_required">Laptops Required: </label><span id="laptops_required">{{ activity.get_laptops_required_display }}</span></p>
+<p><label for="status">Status: </label><span id="status">{{ activity.get_status_display }}</span></p>
+</div>
+
+<h2>Assignment</h2>
+<form method="post" action="{{ request.get_full_path }}">
+	{% csrf_token %}
+	<table>
+		<thead>
+			<tr>
+			<th>Assigned To</th>
+			<th>Priority</th>
+			<th>Escalation Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+			{% if perms.activites.can_accept_activity %}
+			<td>
+				<select name="assignment.user">
+					{% for user in users %}
+					<option value="{{ user.id }}" {% if assignment.user == user %}selected{% endif %}>{{ user.get_full_name }}</option>
+					{% endfor %}
+				</select>
+			</td>
+			<td>
+				<select name="assignment.priority">
+					{% for value, name in priority_choices %}
+					<option value="{{ value }}" {% if assignment.priority == value %}selected{% endif %}>{{ name }}</option>
+					{% endfor %}
+				</select>
+			</td>
+			<td><input type="text" name="assignment.escalation_status" value="{{ assignment.escalation_status|default:'' }}" /></td>
+			<td><input type="submit" value="{% if activity.status == 'N' %}Assign{% else %}Update{% endif %}"/></td>
+			{% else %}
+			<td><span id="assignmentuser">{{ assignment.user.get_full_name }}</span></td>
+			<td><span id="assignmentpriority">{{ assignment.get_priority_display }}</span></td>
+			<td><span id="assignmentstatus">{{ assignment.escalation_status }}</span></td>
+			{% endif %}
+			</tr>
+		</tbody>
+	</table>
+</form>
+
 {% endblock %}
