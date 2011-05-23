@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load common_tags %}
 
 {% block title %}{{ block.super }} | Activities{% endblock %}
 
@@ -119,6 +120,16 @@
 </table>
 </div>
 </div>
+
+{% if activity.status == 'A' and perms.activities.can_approve_activity %}
+{% if assignment.user == user or user|in_group:"manager" %}
+<h2>Approve</h2>
+<form method="post" action="{{ request.get_full_path }}">
+{% csrf_token %}
+<p><label for="approved_id">Approved ID: </label><input type="text" id="approved_id" name="approved_id"/><input type="submit" value="Approve"/></p>
+</form>
+{% endif %}
+{% endif %}
 
 <h2>Assignment</h2>
 <form method="post" action="{{ request.get_full_path }}">

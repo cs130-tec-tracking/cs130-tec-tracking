@@ -115,6 +115,20 @@ class ActivityDetailView(DetailView):
                 else:
                     errors.append('You do not have permission to assign a user to an activity.')
 
+            approved_id = dotdict.get('approved_id', '').strip()
+            if approved_id:
+                if self.request.user.has_perm('activities.can_approve_activity') \
+                      and self.object.assignment.user == self.request.user \
+                      or 'member' in self.request.user.groups.values_list('name', flat=True):
+                    if self.object.status == 'A':
+                        self.object.status = 'I'
+                        self.object.approved_id = approved_id
+                        self.object.save()
+                    else:
+                        errors.append('The activity must be accepted before it can be approved.')
+                else:
+                    errors.append('You do not have permission to approve an activity.')
+
             if dotdict.get('note', ''):
                 note = Note(activity=self.object)
 
