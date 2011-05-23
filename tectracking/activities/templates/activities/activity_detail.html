@@ -75,4 +75,35 @@
 	</table>
 </form>
 
+<h2>Notes</h2>
+<form method="post" action="{{ request.get_full_path }}">
+	{% csrf_token %}
+	<table>
+		<thead>
+			<tr>
+			<th>From</th>
+			<th>Message</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for note in notes %}
+			<tr>
+			<td><span>{{ note.user.get_full_name }}</span></td>
+			<td><p>{{ note.message }}</p></td>
+			</tr>
+			{% endfor %}
+			{% if user.is_authenticated %}
+			<tr>
+			<td>{{ user.get_full_name }}</td>
+			<td><textarea name="note.message" rows=5 cols=60></textarea></td>
+			<td><input type="submit" value="Add Note"/></td>
+			</tr>
+			{% endif %}
+			<tr>
+			<td></td>
+			</tr>
+		</tbody>
+	</table>
+</form>
+
 {% endblock %}

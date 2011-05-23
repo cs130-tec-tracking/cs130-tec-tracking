@@ -1,9 +1,12 @@
-from models import Activity, ActivityTask
+from models import Activity, ActivityTask, Note
 from django.contrib.auth.models import User
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from tectracking.activities.models import Assignment
+from django.utils.datastructures import DotExpandedDict
+from django.core.exceptions import ValidationError
+from django.http import HttpResponseRedirect
 
 class CalendarView(TemplateView):
     template_name = 'calendar.html'
@@ -37,7 +40,9 @@ class ActivityDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         priority_choices = Assignment.PRIORITY_CHOICES
-        
+
+        notes = Note.objects.filter(activity=self.object)
+
         try:
             assignment = self.object.assignment
         except Assignment.DoesNotExist:
@@ -52,6 +57,7 @@ class ActivityDetailView(DetailView):
         context = {
             'users': users,
             'assignment': assignment,
+            'notes': notes,
             'priority_choices': priority_choices,
         }
 
@@ -108,6 +114,17 @@ class ActivityDetailView(DetailView):
                                 errors.append(value)
                 else:
                     errors.append('You do not have permission to assign a user to an activity.')
+
+            if dotdict.get('note', ''):
+                note = Note(activity=self.object)
+
+                message = dotdict['note'].get('message', '').strip()
+                if message:
+                    note.message = message
+                    note.user = self.request.user
+                    note.save()
+                else:
+                    errors.append('Message cannot be empty.')
         else:
             errors.append('You must be logged in to edit an activity.')
 
