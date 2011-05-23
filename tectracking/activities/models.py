@@ -73,19 +73,8 @@ class RoomReservation(models.Model):
         db_table = 'room_reservations'
         ordering = ['-datetime', '-duration']
 
-class StatusType(models.Model):
-    status_type_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100, unique=True)
-
-    class Meta:
-        db_table = 'status_type'
-
-    def __unicode__(self):
-        return self.name
-
 class Task(models.Model):
     task_id = models.AutoField(primary_key=True)
-    status_type = models.ForeignKey(StatusType, db_column='status_type_id')
     name = models.CharField(max_length=100, unique=True)
 
     class Meta:

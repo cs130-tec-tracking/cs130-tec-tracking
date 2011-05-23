@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import Activity, Room, RoomReservation, StatusType, Task, ActivityTask, Assignment, Note
+from models import Activity, Room, RoomReservation, Task, ActivityTask, Assignment, Note
 
 class RoomReservationInline(admin.StackedInline):
     model = RoomReservation
@@ -39,11 +39,8 @@ class RoomReservationAdmin(admin.ModelAdmin):
     search_fields = ('activity__tec_id', 'room__location',)
     date_hierarchy = 'datetime'
 
-class StatusTypeAdmin(admin.ModelAdmin):
-    pass
-
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ('name', 'status_type',)
+    list_display = ('name',)
     inlines = (ActivityTaskInline,)
 
 class AssignmentAdmin(admin.ModelAdmin):
@@ -59,7 +56,6 @@ class NoteAdmin(admin.ModelAdmin):
 admin.site.register(Activity, ActivityAdmin)
 admin.site.register(Room, RoomAdmin)
 admin.site.register(RoomReservation, RoomReservationAdmin)
-admin.site.register(StatusType, StatusTypeAdmin)
 admin.site.register(Task, TaskAdmin)
 admin.site.register(Assignment, AssignmentAdmin)
 admin.site.register(Note, NoteAdmin)
