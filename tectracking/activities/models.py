@@ -87,6 +87,7 @@ class ActivityTask(models.Model):
     activity = models.ForeignKey(Activity, db_column='tec_id')
     task = models.ForeignKey(Task)
     status = models.CharField(max_length=300, null=True, blank=True)
+    assigned_user = models.ForeignKey(User, db_column='auth_user_id', null=True, blank=True, verbose_name='assigned to')
 
     class Meta:
         db_table = 'activity_tasks'
