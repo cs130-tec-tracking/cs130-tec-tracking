@@ -158,13 +158,10 @@ body, select, input, textarea {
 /* Headers (h1, h2, etc) have no default font-size or margin; define those yourself */
 h1, h2, h3, h4, h5, h6 { font-weight: bold; }
 
-/*
+/* Links go here. For some reason they do not apply to ALL links but I will deal
+with this at a line-by-line basis at Jameel's instruction */
 a, a:active, a:visited { color: #607890; }
 a:hover { color: #036; }
-*/
-a, a:active, a:visited, a:hover { color: #036; }
-
-
 
 /**
  * Primary styles
@@ -185,10 +182,21 @@ html {
 
 body {
     height: 100%;
-    width: 940px;
+    width: 950px;
     margin: 0;
     background-color: #b5d1ff;
 
+}
+
+#container {
+	/*width: 75%;*/
+	margin: auto;
+	padding: 5px;
+	    background-color: #CCC;
+	    background-image: -moz-linear-gradient(top, #EEE, #b5d1ff);
+	    background-image: -webkit-gradient(linear, center top, center bottom, from(#EEE), to(#b5d1ff));
+	    background-image: -o-linear-gradient(top, #EEE, #b5d1ff);
+	    background-image: linear-gradient(top, #EEE, #b5d1ff);
 }
 
 .activity_head
@@ -212,11 +220,10 @@ body {
 	text-decoration:none;
 	text-shadow:1px 1px 0px #ffffff;
 }
-
-#container {
-    margin: 0px auto;
-    padding: 5px;
-}
+/*
+.table_links a, a:active, a:visited { color: #607890; }
+.table_links a:hover { color: #036; }
+*/
 
 .row_one {
 	background-color:#b5d1ff;
@@ -225,26 +232,48 @@ body {
 	background-color:#ededed;
 }
 
-
-
 .content_block {
     width: 900px;
-    margin-bottom:10px;
+    margin: auto;
+    margin-bottom:25px;
     padding: 10px;
     -moz-border-radius:10px;
     -webkit-border-radius:10px;
     border-radius:10px;
-    border-style:solid;
-    border-width:2px;
-/*    -moz-box-shadow:0px 0px 10px #000000;
+
+
+    -moz-box-shadow:0px 0px 10px #000000;
     -webkit-box-shadow:0px 0px 10px #000000;
     box-shadow:0px 0px 10px #000000;
-    background: white;*/
+    background: white;
+
+
+
+
+/*
+    border-style:solid;
+    border-width:2px;
     background-color: #CCC;
     background-image: -moz-linear-gradient(top, #EEE, #BBB);
     background-image: -webkit-gradient(linear, center top, center bottom, from(#EEE), to(#BBB));
     background-image: -o-linear-gradient(top, #EEE, #BBB);
     background-image: linear-gradient(top, #EEE, #BBB);
+*/
+}
+
+#calender_block{
+   width: 900px;
+    margin: auto;
+    margin-bottom:10px;
+    padding: 10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
+
+    -moz-box-shadow:0px 0px 10px #000000;
+    -webkit-box-shadow:0px 0px 10px #000000;
+    box-shadow:0px 0px 10px #000000;
+    background: white;
 }
 
 header {

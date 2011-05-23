@@ -33,7 +33,7 @@
   <script src="{{ STATIC_PREFIX }}js/libs/modernizr-1.7.min.js"></script>
 </head>
 
-<body align="center">
+<body>
 
   <div id="container">
     <header>
@@ -57,8 +57,11 @@
         </ul>
       </nav>
     </header>
+
     <div id="main" role="main">
+	 <center>
       {% block content %}{% endblock %}
+	</center>
     </div>
     <footer>
 
