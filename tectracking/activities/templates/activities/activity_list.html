@@ -49,7 +49,7 @@
     </tbody>
 </table>
 {% else %}
-<p>There are no unassigned activities,</p>
+<p>There are no unassigned activities.</p>
 {% endif %}
 </div>
 {% endif %}
@@ -174,7 +174,7 @@
 				{% endwith %}
 				{% endfor %}
 			{% else %}
-				{% for activity in activities %}
+				{% for activity in activity_list %}
 	                {
 	                    id: '{{activity.tec_id}}',
 	                    title: '{{activity.short_desc}}',
