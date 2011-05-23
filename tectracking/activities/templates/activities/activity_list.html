@@ -32,13 +32,13 @@
     </thead>
     <tbody>
         {% for activity in unassigned_activities %}
-            <tr>
-                <td class="{% cycle 'row_one' 'row_two' %}"><a href="{% url 'activity_detail' activity.tec_id %}"><span class="ui-icon ui-icon-search"></span>{{ activity.tec_id }}</a></td>
-                <td class="{% cycle 'row_one' 'row_two' %}">{{ activity.event_type }}</td>
-                <td class="{% cycle 'row_one' 'row_two' %}">{{ activity.short_desc }}</td>
-                <td class="{% cycle 'row_one' 'row_two' %}">{{ activity.event_organizer }}</td>
-                <td class="{% cycle 'row_one' 'row_two' %}">{{ activity.event_start_date }}</td>
-                <td class="{% cycle 'row_one' 'row_two' %}">
+            <tr class="{% cycle 'row_one' 'row_two' %}">
+                <td><a href="{% url 'activity_detail' activity.tec_id %}"><span class="ui-icon ui-icon-search"></span>{{ activity.tec_id }}</a></td>
+                <td>{{ activity.event_type }}</td>
+                <td>{{ activity.short_desc }}</td>
+                <td>{{ activity.event_organizer }}</td>
+                <td>{{ activity.event_start_date }}</td>
+                <td>
                   <a href="#"
                   onclick="show_assign_dialog('{{activity.tec_id }}',
                   '{{ activity.short_desc }}')"
@@ -64,12 +64,18 @@
 <table>
     <thead>
         <tr>
-            <th>TEC ID</th><th>Priority</th><th>Event Type</th><th>Event Title</th><th>Start Date</th><th>Escalation Status</th><th>Actions</th>
+		<th><span class="activity_head">TEC ID</span></th>
+		<th><span class="activity_head">Priority</span></th>
+		<th><span class="activity_head">Event Type</span></th>
+		<th><span class="activity_head">Event Title</span></th>
+		<th><span class="activity_head">Start Date</span></th>
+		<th><span class="activity_head">Escalation Status</span></th>
+		<th><span class="activity_head">Actions</span></th>
         </tr>
     </thead>
     <tbody>
         {% for assignment in accepted_activities %}
-            <tr>
+            <tr class="{% cycle 'row_one' 'row_two' %}">
                 <td><a href="{% url 'activity_detail' assignment.activity.tec_id %}"><span class="ui-icon ui-icon-search"></span>{{ assignment.activity.tec_id }}</a></td>
                 <td>{{ assignment.priority }}</td>
                 <td>{{ activity.event_type }}</td>
@@ -98,12 +104,17 @@
 <table>
     <thead>
         <tr>
-            <th>TEC ID</th><th>Priority</th><th>Event Type</th><th>Event Title</th><th>Start Date</th><th>Escalation Status</th>
+		<th><span class="activity_head">TEC ID</span></th>
+		<th><span class="activity_head">Priority</span></th>
+		<th><span class="activity_head">Event Type</span></th>
+		<th><span class="activity_head">Event Title</span></th>
+		<th><span class="activity_head">Start Date</span></th>
+		<th><span class="activity_head">Escalation Status</span></th>
         </tr>
     </thead>
     <tbody>
         {% for assignment in active_activities %}
-            <tr>
+            <tr class="{% cycle 'row_one' 'row_two' %}">
                 <td><a href="{% url 'activity_detail' assignment.activity.tec_id %}"><span class="ui-icon ui-icon-search"></span>{{ assignment.activity.tec_id }}</a></td>
                 <td>{{ assignment.priority }}</td>
                 <td>{{ activity.event_type }}</td>

@@ -271,6 +271,11 @@ label {
     background: white;
 }
 
+.detail_left_label
+{
+	font-weight:bold;
+}
+
 header {
     padding-bottom: 30px;
 }

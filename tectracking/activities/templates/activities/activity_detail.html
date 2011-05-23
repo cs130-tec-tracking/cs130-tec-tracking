@@ -14,26 +14,109 @@
 
 <div id="activitydetail">
 <div class="content_block">
-<p><label for="tec_id">TEC ID: </label><span id="tec_id">{{ activity.tec_id }}</span></p>
-<p><label for="approved_id">Approved ID: </label><span id="approved_id">{{ activity.approved_id|default:"Not Approved" }}</span></p>
-<p><label for="event_type">Event Type: </label><span id="event_type">{{ activity.event_type }}</span></p>
-<p><label for="short_desc">Event Title: </label><span id="short_desc">{{ activity.short_desc }}</span></p>
-<p><label for="reservation_desc">Reservation Description: </label><span id="reservation_desc">{{ activity.reservation_desc }}</span></p>
-<p><label for="tec_site">TEC Site: </label><span id="tec_site">{{ activity.tec_site }}</span></p>
-<p><label for="event_location">Event Location: </label><span id="event_location">{{ activity.event_location }}</span></p>
-<p><label for="event_start_date">Event Start Date: </label><span id="event_start_date">{{ activity.event_start_date }}</span></p>
-<p><label for="event_end_date">Event End Date: </label><span id="event_end_date">{{ activity.event_end_date }}</span></p>
-<p><label for="event_organizer">Event Organizer: </label><span id="event_organizer">{{ activity.event_organizer }}</span></p>
-<p><label for="date_entered">Date Entered: </label><span id="date_entered">{{ activity.date_entered }}</span></p>
-<p><label for="date_last_mod">Last Modified: </label><span id="date_last_mod">{{ activity.date_last_mod|default:"Not Provided" }}</span></p>
-<p><label for="event_size">Event Size: </label><span id="event_size">{{ activity.event_size|default:"Not Provided" }}</span></p>
-<p><label for="sponsor_mgr">Sponsor Manager: </label><span id="sponsor_mgr">{{ activity.sponsor_mgr|default:"Not Provided" }}</span></p>
-<p><label for="class_mgr">Class Manager: </label><span id="class_mgr">{{ activity.class_mgr|default:"Not Provided" }}</span></p>
-<p><label for="siebel_num">Siebel Number: </label><span id="siebel_num">{{ activity.siebel_num|default:"Not Provided" }}</span></p>
-<p><label for="num_attendees">Number of Attendees: </label><span id="num_attendees">{{ activity.num_attendees }}</span></p>
-<p><label for="room_required">Room Required: </label><span id="room_required">{{ activity.get_room_required_display }}</span></p>
-<p><label for="laptops_required">Laptops Required: </label><span id="laptops_required">{{ activity.get_laptops_required_display }}</span></p>
-<p><label for="status">Status: </label><span id="status">{{ activity.get_status_display }}</span></p>
+<table>
+<tbody>
+<tr class="row_one">
+<td class = "detail_left_label" width="200px">TEC ID: </td>
+<td width="300px">{{ activity.tec_id }}</td>
+</tr>
+
+<tr class="row_two">
+<td class = "detail_left_label">Approved ID:</td>
+<td>{{ activity.approved_id|default:"Not Approved" }}</td>
+</tr>
+
+<tr class="row_one">
+<td class = "detail_left_label">Event Type: </td>
+<td>{{ activity.event_type }}</td>
+</tr>
+
+<tr class="row_two">
+<td class = "detail_left_label">Event Title:</td>
+<td>{{ activity.short_desc }}</td>
+</tr>
+
+<tr class="row_one">
+<td class = "detail_left_label">Reservation Description:</td>
+<td>{{ activity.reservation_desc }}</td>
+</tr>
+
+<tr class="row_two">
+<td class = "detail_left_label">TEC Site: </td>
+<td>{{ activity.tec_site }}</td>
+</tr>
+
+<tr class="row_one">
+<td class = "detail_left_label">Event Location: </td>
+<td>{{ activity.event_location }}</td>
+</tr>
+
+<tr class="row_two">
+<td class = "detail_left_label">Event Start Date: </td>
+<td>{{ activity.event_start_date }}</td>
+</tr>
+
+<tr class="row_one">
+<td class = "detail_left_label">Event End Date:</td>
+<td>{{ activity.event_end_date }}</td>
+</tr>
+
+<tr class="row_two">
+<td class = "detail_left_label">Event Organizer:</td>
+<td>{{ activity.event_organizer }}</td>
+</tr>
+
+<tr class="row_one">
+<td class = "detail_left_label">Date Entered:</td>
+<td>{{ activity.date_entered }}</td>
+</tr>
+
+<tr class="row_two">
+<td class = "detail_left_label">Last Modified:</td>
+<td>{{ activity.date_last_mod|default:"Not Provided" }}</td>
+</tr>
+
+<tr class="row_one">
+<td class = "detail_left_label">Event Size:</td>
+<td>{{ activity.event_size|default:"Not Provided" }}</td>
+</tr>
+
+<tr class="row_two">
+<td class = "detail_left_label">Sponsor Manager:</td>
+<td>{{ activity.sponsor_mgr|default:"Not Provided" }}</td>
+</tr>
+
+<tr class="row_one">
+<td class = "detail_left_label">Class Manager: </td>
+<td>{{ activity.class_mgr|default:"Not Provided" }}</td>
+</tr>
+
+<tr class="row_two">
+<td class = "detail_left_label">Siebel Number:</td> 
+<td>{{ activity.siebel_num|default:"Not Provided" }}</td>
+</tr>
+
+<tr class="row_one">
+<td class = "detail_left_label">Number of Attendees:</td>
+<td>{{ activity.num_attendees }}</td>
+</tr>
+
+<tr class="row_two">
+<td class = "detail_left_label">Room Required:</td> 
+<td>{{ activity.get_room_required_display }}</td>
+</tr>
+
+<tr class="row_one">
+<td class = "detail_left_label">Laptops Required: </td>
+<td>{{ activity.get_laptops_required_display }}</td>
+</tr>
+
+<tr class="row_two">
+<td class = "detail_left_label">Status: </td>
+<td>{{ activity.get_status_display }}</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
