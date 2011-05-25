@@ -139,20 +139,49 @@
 </div>
 
 <div id="assign_dialog">
-  <form id="assign_form">
-    <div style="clear: right;">
+  <form id="assign_form" method="post">
+    {% csrf_token %}
+    <div>
       <span id="assign_tec_id">TEC ID:</span>
       <br />
       <span id="assign_event_title">Event Title:</span>
     </div>
-    <span>Assign to user: </span>
-    <select id="assign_select">
-      {% for user in users %}
-        <option value="{{user.id}}">{{user.first_name}}
-        {{user.last_name}}</option>
-      {% endfor %}
-    </select>
-    <input type="submit" value="Assign" class="jsbutton" />
+    <br />
+    <table>
+      <tr>
+        <td>Assign to user:</td>
+        <td>
+          <select name="assignment.user">
+            {% for user in users %}
+            <option value="{{user.id}}">{{user.get_full_name}}</option>
+            {% endfor %}
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Priority:</td>
+        <td>
+          <select name="assignment.priority">
+            {% for value, name in priority_choices %}
+            <option value="{{ value }}" >{{ name }}</option>
+            {% endfor %}
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Escalation Status:</td>
+        <td>
+          <input type="text" name="assignment.escalation_status"
+                 value="{{ assignment.escalation_status|default:'' }}" />
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <input type="submit" value="Assign" class="jsbutton" />
+        </td>
+      </tr>
+    </table>
   </form>
 </div>
 {% endblock %}
@@ -163,12 +192,13 @@
     function show_assign_dialog(id, title) {
         $("#assign_tec_id").text("TEC ID: " + id);
         $("#assign_event_title").text("Event Title: " + title);
+        $("#assign_form").attr("action", "/activities/" + id + "/");
         $("#assign_dialog").dialog("open");
     };
 
     $(document).ready(function() {
         $("#assign_dialog").dialog({autoOpen: false,
-    title: 'Assign Activity', resizable: false});
+    title: 'Assign Activity', resizable: false, width: 350});
 
         $('#calendar').fullCalendar({
             editable: false,

@@ -126,7 +126,13 @@
 <h2>Approve</h2>
 <form method="post" action="{{ request.get_full_path }}">
 {% csrf_token %}
-<p><label for="approved_id">Approved ID: </label><input type="text" id="approved_id" name="approved_id"/><input type="submit" value="Approve"/></p>
+<p><label for="approved_id">Approved ID: </label>
+  <input type="text"
+         id="approved_id"
+         name="approved_id"/>
+  <input type="submit"
+         value="Approve"
+         class="jsbutton"/></p>
 </form>
 {% endif %}
 {% endif %}
@@ -160,7 +166,10 @@
 				</select>
 			</td>
 			<td><input type="text" name="assignment.escalation_status" value="{{ assignment.escalation_status|default:'' }}" /></td>
-			<td><input type="submit" value="{% if activity.status == 'N' %}Assign{% else %}Update{% endif %}"/></td>
+			<td><input type="submit" 
+                                   value="{% if activity.status == 'N' %}Assign{% else %}Update{% endif %}"
+                                   class="jsbutton" />
+                        </td>
 			{% else %}
 			<td><span id="assignmentuser">{{ assignment.user.get_full_name }}</span></td>
 			<td><span id="assignmentpriority">{{ assignment.get_priority_display }}</span></td>
@@ -192,7 +201,7 @@
 			<tr>
 			<td>{{ user.get_full_name }}</td>
 			<td><textarea name="note.message" rows=5 cols=60></textarea></td>
-			<td><input type="submit" value="Add Note"/></td>
+			<td><input type="submit" value="Add Note" class="jsbutton"/></td>
 			</tr>
 			{% endif %}
 			<tr>
