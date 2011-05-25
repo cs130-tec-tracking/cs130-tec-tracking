@@ -1,7 +1,7 @@
-from django.conf.urls.defaults import *
-from django.views.generic.base import TemplateView
+from django.conf.urls.defaults import patterns, url
+from tectracking.inventory.views import InventoryListView
 
 urlpatterns = patterns(
     '',
-    url(r'^$', TemplateView.as_view(template_name='base.html'), name='inventory'),
+    url(r'^$', InventoryListView.as_view(), name='inventory'),
 )

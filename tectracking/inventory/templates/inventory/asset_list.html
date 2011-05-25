@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load activity_tags %}
+{% load common_tags %}
+{% load url from future %}
+
+{% block title %}{{ block.super }} | Inventory{% endblock %}
+
+{% block content %}
+
+<div class="content_block">
+<h2>Inventory List</h2>
+{% if disp_inventory %}
+<table>
+    <thead>
+        <tr>
+		<th><span class="activity_head">Serial Number</span></th>
+		<th><span class="activity_head">Bar Code</span></th>
+		<th><span class="activity_head">RFID</span></th>
+		<th><span class="activity_head">Model MFG</span></th>
+		<th><span class="activity_head">Model Type</span></th>
+		<th><span class="activity_head">Model Name</span></th>
+		<th><span class="activity_head">Memory</span></th>
+		<th><span class="activity_head">Num Cores</span></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for inventory in disp_inventory %}
+            <tr class="{% cycle 'row_one' 'row_two' %}">
+                <td>{{ inventory.serial_num }}</td>
+                <td>{{ inventory.bar_code }}</td>
+                <td>{{ inventory.rfid }}</td>
+                <td>{{ inventory.asset_model_mfg }}</td>
+                <td>{{ inventory.asset_model_type }}</td>
+                <td>{{ inventory.asset_model_name }}</td>
+                <td>{{ inventory.amt_memory }}</td>
+                <td>{{ inventory.num_cores }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p>Total inventory items: <span class="totalcount">{{ disp_inventory|length }}</span></p>
+{% else %}
+<p>There are no inventory items.</p>
+{% endif %}
+</div>
+
+
+{% endblock %}
