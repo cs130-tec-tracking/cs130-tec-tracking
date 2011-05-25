@@ -212,6 +212,7 @@
 	                    start: new Date('{{activity.event_start_date}}'),
 	                    end: new Date('{{activity.event_end_date}}'),
 	                    url: "{% url 'activity_detail' activity.tec_id %}",
+                            className: "priority-{{ assignment.priority }}"
 	                },
 				{% endwith %}
 				{% endfor %}
@@ -223,7 +224,8 @@
 	                    start: new Date('{{activity.event_start_date}}'),
 	                    end: new Date('{{activity.event_end_date}}'),
 	                    url: "{% url 'activity_detail' activity.tec_id %}",
-	                },
+	                    className: "priority-{{ activity.assignment.priority }}"
+                       },
 	            {% endfor %}
 			{% endif %}
             ]

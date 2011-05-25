@@ -315,6 +315,22 @@ td { padding: 2px 7px; }
     margin: 0px;
 }
 
+.priority-1, .priority-1 div {
+    background-color: red;
+    border-color: red;
+}
+
+.priority-2, .priority-2 div {
+    background-color: orange;
+    border-color: orange;
+}
+
+.priority-3, .priority-3 div {
+    background-color: yellow;
+    border-color: yellow;
+}
+
+
 /**
  * Non-semantic helper classes: please define your styles before this section.
  */
