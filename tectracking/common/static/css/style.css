@@ -302,6 +302,19 @@ div.ui-state-error, div.ui-state-highlight {
 /* Pad table headers and data */
 td { padding: 2px 7px; }
 
+#activity_report {
+    font-size: 9px;
+    font-family: "Lucida Console";
+    color: black;
+    word-wrap: break-word;
+}
+
+#activity_report td {
+    max-width: 60px;
+    padding: 10px 5px;
+    margin: 0px;
+}
+
 /**
  * Non-semantic helper classes: please define your styles before this section.
  */
