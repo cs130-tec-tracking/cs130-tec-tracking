@@ -63,6 +63,18 @@
     </header>
 
     <div id="main" role="main">
+    {% if messages %}
+        <div id="messages">
+        {% for message in messages %}
+            {% if message.tags == 'info' or message.tags == 'success' %}
+            <div class="ui-state-highlight ui-corner-all"><p><span class="ui-icon ui-icon-info"></span>{{ message }}</p></div>
+            {% else %}{% if message.tags == 'error' %}
+            <div class="ui-state-error ui-corner-all"><p><span class="ui-icon ui-icon-alert"></span>{{ message }}</p></div>
+            {% endif %}
+            {% endif %}
+        {% endfor %}
+        </div>
+    {% endif %}
 	 <center>
 	{% block content %}
 	<div class="content_block">

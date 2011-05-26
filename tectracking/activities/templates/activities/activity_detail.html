@@ -5,16 +5,8 @@
 
 {% block content %}
 
-{% for message in messages %}
-<div class="ui-state-highlight ui-corner-all"><p><span class="ui-icon ui-icon-info"></span>{{ message }}</p></div>
-{% endfor %}
-
-{% for error in errors %}
-<div class="ui-state-error ui-corner-all"><p><span class="ui-icon ui-icon-alert"></span>{{ error }}</p></div>
-{% endfor %}
-
-<div id="activitydetail">
 <div class="content_block">
+<div id="activitydetail">
 <table>
 <tbody>
 <tr class="row_one">
@@ -119,6 +111,15 @@
 </tbody>
 </table>
 </div>
+{% if activity.status == 'I' and perms.activities.can_close_activity %}
+{% if assignment.user == user or user|in_group:"manager" %}
+<form method="post" action="{{ request.get_full_path }}">
+    {% csrf_token %}
+    <input type="hidden" name="status" value="C"/>
+    <input type="submit" value="Close" class="jsbutton"/>
+</form>
+{% endif %}
+{% endif %}
 </div>
 
 <div class="content_block">
@@ -152,7 +153,7 @@
 		</thead>
 		<tbody>
 			<tr>
-			{% if perms.activites.can_accept_activity %}
+			{% if activity.status != 'C' and perms.activites.can_accept_activity %}
 			<td>
 				<select name="assignment.user">
 					{% for user in users %}
