@@ -8,11 +8,11 @@
 {% block content %}
 
 {% if perms.activites.can_accept_activity %}
-<div class="content_body">
+<div class="content_block">
 <div class="content_head">
 <h2>Activities needing assignment</h2>
 </div>
-<div class="content_block">
+<div class="content_body">
 
 {% if unassigned_activities %}
 <table>
@@ -52,11 +52,11 @@
 {% endif %}
 
 {% if perms.activities.can_approve_activity %}
-<div class="content_body">
+<div class="content_block">
 <div class="content_head">
 <h2>Newly Assigned Activities</h2>
 </div>
-<div class="content_block">
+<div class="content_body">
 {% with accepted_activities=assignments|accepted %}
 {% if accepted_activities %}
 <table>
@@ -96,11 +96,11 @@
 
 
 {% if user.is_authenticated %}
-<div class="content_body">
+<div class="content_block">
 <div class="content_head">
 <h2>Active Assigned Activities</h2>
 </div>
-<div class="content_block">
+<div class="content_body">
 
 {% with active_activities=assignments|incomplete %}
 {% if active_activities %}

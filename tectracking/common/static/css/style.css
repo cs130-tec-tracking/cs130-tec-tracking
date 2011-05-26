@@ -219,7 +219,7 @@ body {
 .table_links a:hover { color: #036; }
 */
 
-.content_body{
+.content_block{
 
 	margin-bottom:25px;
 
@@ -230,6 +230,8 @@ body {
 	-moz-border-radius:10px;
 	-webkit-border-radius:10px;
 	border-radius:10px;
+
+	background: #F0F0F0;
 }
 
 .content_head{
@@ -249,7 +251,6 @@ body {
 	text-decoration:none;
 /*	text-shadow:1px 1px 0px #ffffff;*/
 
-
 	margin-bottom:-5px;
 	padding:10px;
 
@@ -262,7 +263,7 @@ body {
 
 /*	background: #F3F3F3;*/
 }
-.content_block {
+.content_body {
     padding: 10px;
     -moz-border-radius-bottomright:10px;
     -moz-border-radius-bottomleft:10px;
