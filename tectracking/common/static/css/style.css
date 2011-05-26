@@ -375,8 +375,8 @@ td { padding: 2px 7px; }
 }
 
 .priority-3, .priority-3 div {
-    background-color: yellow;
-    border-color: yellow;
+    background-color: tan;
+    border-color: tan;
 }
 
 #activity_report .DataTables_sort_wrapper {
