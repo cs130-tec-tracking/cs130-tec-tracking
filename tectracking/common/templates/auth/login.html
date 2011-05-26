@@ -13,6 +13,7 @@
 {% endif %}
 
 <div class="content_block" style="width:400px;">
+<br />
 <form method="post" action="{{ request.get_full_path }}" >
 {% csrf_token %}
 <table>
@@ -33,6 +34,7 @@
 {% url 'index' as index_url %}
 <input type="hidden" name="next" value="{% firstof next index_url %}" />
 </form>
+<br />
 </div>
 
 {% endblock %}
