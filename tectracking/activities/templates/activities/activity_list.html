@@ -37,7 +37,7 @@
                 <td>
                   <a href="#"
                   onclick="show_assign_dialog('{{activity.tec_id }}',
-                  '{{ activity.short_desc }}')"
+                  '{{ activity.short_desc }}', '{% url 'activity_detail' activity.tec_id %}')"
                   class="actionlink">Assign</a>
                 </td>
             </tr>
@@ -194,10 +194,10 @@
 
 {% block scripts %}
 <script type='text/javascript'>
-    function show_assign_dialog(id, title) {
+    function show_assign_dialog(id, title, url) {
         $("#assign_tec_id").text("TEC ID: " + id);
         $("#assign_event_title").text("Event Title: " + title);
-        $("#assign_form").attr("action", "/activities/" + id + "/");
+        $("#assign_form").attr("action", url);
         $("#assign_dialog").dialog("open");
     };
 
