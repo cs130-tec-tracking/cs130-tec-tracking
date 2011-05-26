@@ -200,6 +200,74 @@
 
 <div class="content_body">
 <div class="content_head">
+<h2>Tasks</h2>
+</div>
+<div class="content_block">
+<div id="tasks">
+<div class="task">
+<p><strong>Task</strong></p>
+<p><strong>Assigned To</strong></p>
+<p><strong>Status</strong></p>
+</div>
+{% for activity_task in activity_tasks %}
+<div class="task {% cycle 'row_one' 'row_two' %}">
+<form method="post" action="{{ request.get_full_path }}">
+    {% csrf_token %}
+    <p><input type="hidden" name="task.id" value="{{ activity_task.id }}"/></p>
+    <p>{{ activity_task.task.name }}</p>
+    {% if activity.status != 'C' and perms.activities.can_assign_task %}
+    {% if assignment.user == user or user|in_group:"manager" %}
+    <p><select name="task.assigned_user">
+        {% for user in users %}
+        <option value="{{ user.id }}" {% if user == activity_task.assigned_user %}selected{% endif %}>{{ user.get_full_name }}</option>
+        {% endfor %}
+    </select></p>
+    {% else %}<p>{{ activity_task.assigned_user.get_full_name }}</p>
+    {% endif %}{% else %}<p>{{ activity_task.assigned_user.get_full_name }}</p>{% endif %}
+    {% if activity.status != 'C' and perms.activities.can_change_task_status %}
+    {% if activity_task.assigned_user == user or assignment.user == user or user|in_group:"manager" %}
+    <p><input type="text" name="task.status" value="{{ activity_task.status }}"/></p>
+    {% else %}<p>{{ activity_task.status }}</p>
+    {% endif %}{% else %}<p>{{ activity_task.status }}</p>{% endif %}
+    {% if activity.status != 'C' %}
+    {% if perms.activities.can_assign_task or perms.activities.can_change_task_status %}
+    {% if activity_task.assigned_user == user or assignment.user == user or user|in_group:"manager" %}
+    <p class="submit"><input type="submit" value="Update"/></p>
+    {% endif %}{% endif %}{% endif %}
+</form>
+</div>
+{% empty %}
+<div class="task row_one">
+<p><strong>No Tasks</strong></p>
+</div>
+{% endfor %}
+{% if activity.status != 'C' and activity.status != 'N' and perms.activities.add_activitytask %}
+{% if assignment.user == user or user|in_group:"manager" %}
+<div class="task">
+<form method="post" action="{{ request.get_full_path }}">
+    {% csrf_token %}
+    <p><input type="hidden" name="task.id" value=""/></p>
+    <p><select name="task.task_id">
+        {% for task in tasks %}
+        <option value="{{ task.task_id }}">{{ task.name }}</option>
+        {% endfor %}
+    </select></p>
+    <p><select name="task.assigned_user">
+        {% for user in users %}
+        <option value="{{ user.id }}" {% if user == assignment.user %}selected{% endif %}>{{ user.get_full_name }}</option>
+        {% endfor %}
+    </select></p>
+    <p><input type="text" name="task.status"/></p>
+    <p class="submit"><input type="submit" value="Add"/></p>
+</form>
+</div>
+{% endif %}{% endif %}
+</div>
+</div>
+</div>
+
+<div class="content_body">
+<div class="content_head">
 <h2>Notes</h2>
 </div>
 <div class="content_block">

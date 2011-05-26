@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from tectracking.activities.models import Assignment
+from tectracking.activities.models import Assignment, Task
 from django.utils.datastructures import DotExpandedDict
 from django.core.exceptions import ValidationError
 from django.http import HttpResponseRedirect
@@ -64,6 +64,7 @@ class ActivityDetailView(DetailView):
             'assignment': assignment,
             'notes': notes,
             'activity_tasks': activity_tasks,
+            'tasks': Task.objects.all(),
             'priority_choices': priority_choices,
         }
 
@@ -115,6 +116,34 @@ class ActivityDetailView(DetailView):
                     messages.error(self.request, 'You must provide an Approved ID.')
                     error = True
 
+            if dotdict.has_key('task'):
+                assigned_user_id = dotdict['task'].get('assigned_user', '')
+                assigned_user = None
+                id = dotdict['task'].get('id', '')
+                task_id = dotdict['task'].get('task_id', '')
+                task = None
+                status = dotdict['task'].get('status', '')
+
+                if assigned_user_id:
+                    try:
+                        assigned_user = User.objects.get(pk=int(assigned_user_id))
+                    except (User.DoesNotExist, ValueError):
+                        messages.error(self.request, 'User with id %s does not exist.' % user_id)
+                        error = True
+                elif not id:
+                    messages.error(self.request, 'You must assign the task to a user.')
+                    error = True
+
+                if not id:
+                    try:
+                        task = Task.objects.get(pk=int(task_id))
+                    except(Task.DoesNotExist, ValueError):
+                        messages.error(self.request, 'Task with id %s is not a valid task.' % task_id)
+                        error = True
+
+                if not error:
+                    error = not self.update_task(id, task, assigned_user, status)
+
             if dotdict.get('note', ''):
                 message = dotdict['note'].get('message', '').strip()
 
@@ -151,6 +180,51 @@ class ActivityDetailView(DetailView):
             return True
         else:
             messages.error(self.request, 'Message cannot be empty.')
+            return False
+
+    def update_task(self, id, task, assigned_user, status):
+        if self.object.status == 'C':
+            messages.error(self.request, 'You cannot add or edit tasks for a closed activity.')
+            return False
+        elif self.object.status == 'N':
+            messages.error(self.request, 'You must approve the activity before you can add or edit tasks.')
+            return False
+        elif id:
+            try:
+                activity_task = ActivityTask.objects.get(pk=int(id), activity=self.object)
+
+                if assigned_user:
+                    if self.user_has_perm('activities.can_assign_task'):
+                        activity_task.assigned_user = assigned_user
+                    else:
+                        messages.error(self.request, 'You do not have permission to assign a user to a task.')
+                        return False
+
+                if status:
+                    if self.user_has_perm('activities.can_change_task_status') or \
+                      (self.request.user.has_perm('activities.can_change_task_status') \
+                       and activity_task.assigned_user == self.request.user):
+                        activity_task.status = status
+                    else:
+                        messages.error(self.request, 'You do not have permission to change the status of this task.')
+                        return False
+
+                activity_task.save()
+                messages.success(self.request, 'Task updated successfully.')
+                return True
+            except (ActivityTask.DoesNotExist, ValueError):
+                messages.error(self.request, 'Activity task with id %s is not a valid task.' % id)
+                return False
+        elif self.user_has_perm('activities.add_activitytask'):
+            activity_task = ActivityTask(activity=self.object)
+            activity_task.task = task
+            activity_task.assigned_user = assigned_user
+            activity_task.status = status
+            activity_task.save()
+            messages.success(self.request, 'Task added successfully.')
+            return True
+        else:
+            messages.error(self.request, 'You do not have permission to add a task to this activity.')
             return False
 
     def assign_user(self, user, priority, escalation_status):

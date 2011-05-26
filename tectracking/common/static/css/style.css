@@ -219,13 +219,6 @@ body {
 .table_links a:hover { color: #036; }
 */
 
-.row_one {
-	background-color:#DDDDFF;
-}
-.row_two {
-	background-color:#EEEEFF;
-}
-
 .content_body{
 
 	margin-bottom:25px;
@@ -367,6 +360,37 @@ td { padding: 2px 7px; }
     bottom: 0;
 }
 
+#tasks {
+    display: inline-block;
+}
+
+.task {
+    float: left;
+    text-align: left;
+    background-color: #EDEDED;
+    border: 1px solid #BCBCBC;
+    padding: 1em;
+    margin: 0px 2px;
+    height: 8em;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
+}
+
+.task p {
+    line-height: 2em;
+}
+
+.task p.submit {
+    text-align: center;
+}
+
+.row_one {
+    background-color:#DDDDFF;
+}
+.row_two {
+    background-color:#EEEEFF;
+}
 
 /**
  * Non-semantic helper classes: please define your styles before this section.
