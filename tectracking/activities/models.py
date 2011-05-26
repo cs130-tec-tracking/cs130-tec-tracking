@@ -96,6 +96,7 @@ class ActivityTask(models.Model):
         db_table = 'activity_tasks'
         permissions = (
             ('can_change_task_status', 'Can change the status of a task'),
+            ('can_assign_task', 'Can assign a task to a user'),
         )
 
     def __unicode__(self):
