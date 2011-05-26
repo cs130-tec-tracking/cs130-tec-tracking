@@ -330,6 +330,16 @@ td { padding: 2px 7px; }
     border-color: yellow;
 }
 
+#activity_report .DataTables_sort_wrapper {
+    position: relative;
+    height: 40px;
+}
+
+#activity_report .DataTables_sort_wrapper span {
+    position: absolute;
+    bottom: 0;
+}
+
 
 /**
  * Non-semantic helper classes: please define your styles before this section.
