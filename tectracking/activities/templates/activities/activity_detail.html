@@ -6,6 +6,7 @@
 {% block content %}
 
 <div class="content_block">
+<h2>Activity Details for {{ activity.tec_id }} </h2>
 <div id="activitydetail">
 <table>
 <tbody>
@@ -182,7 +183,8 @@
 		</tbody>
 	</table>
 </form>
-
+</div>
+<div class="content_block">
 <h2>Notes</h2>
 <form method="post" action="{{ request.get_full_path }}">
 	{% csrf_token %}

@@ -177,7 +177,7 @@ a:hover { color: #036; }
 }
 
 html {
-    height: 100%;
+	height: 100%;
 }
 
 body {
@@ -185,18 +185,11 @@ body {
 	width:100%;
 	margin: 0;
 	background-color: #DDDDDD;
-/*
-    background-color: #b5d1ff;
-	background-image: -moz-linear-gradient(top, #EEE, #b5d1ff);
-	background-image: -webkit-gradient(linear, center top, center bottom, from(#EEE), to(#b5d1ff));
-	background-image: -o-linear-gradient(top, #EEE, #b5d1ff);
-	background-image: linear-gradient(top, #EEE, #b5d1ff);*/
 }
 
 #container {
-/*	width: 75%;
-height:100%;*/
-	/*margin: auto;*/
+	width: 80%;
+	margin: auto;
 	padding: 10px;
 }
 
@@ -227,18 +220,13 @@ height:100%;*/
 */
 
 .row_one {
-/*	background-color:#b5d1ff;*/
-/*	background-color:#B9D5ff; */
-/*	background-color:#C9E7FA;*/
 	background-color:#DDDDFF;
 }
 .row_two {
-/*	background-color:#E9F1F5;#ededed;*/
 	background-color:#EEEEFF;
 }
 
 .content_block {
-   /* width: 900px;*/
     margin: auto;
     margin-bottom:25px;
     padding: 10px;
@@ -253,7 +241,6 @@ height:100%;*/
 }
 
 #calender_block{
-/*   width: 900px;*/
     margin: auto;
     margin-bottom:10px;
     padding: 10px;
@@ -274,7 +261,6 @@ height:100%;*/
 
 header {
 	padding-bottom: 30px;
-	width:900px;
 }
 
 header nav ul {
