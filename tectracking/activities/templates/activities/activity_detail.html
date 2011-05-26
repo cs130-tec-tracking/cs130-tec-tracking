@@ -164,7 +164,7 @@
 			<td>
 				<select name="assignment.priority">
 					{% for value, name in priority_choices %}
-					<option value="{{ value }}" {% if assignment.priority == value %}selected{% endif %}>{{ name }}</option>
+					<option value="{{ value }}" {% if assignment.priority == value or not assignment.priority and value == 2 %}selected{% endif %}>{{ name }}</option>
 					{% endfor %}
 				</select>
 			</td>
