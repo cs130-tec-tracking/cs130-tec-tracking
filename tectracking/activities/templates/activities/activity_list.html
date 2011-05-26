@@ -80,7 +80,10 @@
                 <td>{{ assignment.activity.short_desc }}</td>
                 <td>{{ assignment.activity.event_start_date }}</td>
                 <td>{{ assignment.escalation_status }}</td>
-                <td><a href="{% url 'activity_detail' assignment.activity.tec_id %}" class="actionlink">Accept</a></td>
+                <td><a href="#"
+                  onclick="show_accept_dialog('{{assignment.activity.tec_id }}',
+                  '{{ assignment.activity.short_desc }}', '{% url 'activity_detail' assignment.activity.tec_id %}')"
+                  class="actionlink">Accept</a></td>
             </tr>
         {% endfor %}
     </tbody>
@@ -189,6 +192,39 @@
     </table>
   </form>
 </div>
+
+<div id="accept_dialog">
+  <form id="accept_form" method="post" >
+    {% csrf_token %}
+    <div>
+      <span id="accept_tec_id">TEC ID:</span>
+      <br />
+      <span id="accept_event_title">Event Title:</span>
+    </div>
+    <br />
+    <table>
+      <tr>
+        <td>
+          <label for="approved_id">Approved ID: </label>
+        </td>
+        <td>
+          <input type="text"
+                 id="approved_id"
+                 name="approved_id"/>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <input type="submit"
+                 value="Approve"
+                 id="approve_submit"
+                 class="jsbutton"/>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
 {% endblock %}
 
 
@@ -201,9 +237,19 @@
         $("#assign_dialog").dialog("open");
     };
 
+    function show_accept_dialog(id, title, url) {
+        $("#accept_tec_id").text("TEC ID: " + id);
+        $("#accept_event_title").text("Event Title: " + title);
+        $("#accept_form").attr("action", url);
+        $("#accept_dialog").dialog("open");
+    };
+
     $(document).ready(function() {
         $("#assign_dialog").dialog({autoOpen: false,
-    title: 'Assign Activity', resizable: false, width: 350});
+        title: 'Assign Activity', resizable: false, width: 350});
+
+        $("#accept_dialog").dialog({autoOpen: false,
+        title: 'Accept Activity', resizable: false, width: 350});
 
         $('#calendar').fullCalendar({
             editable: false,
