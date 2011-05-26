@@ -138,8 +138,8 @@ class ActivityDetailView(DetailView):
 
     def user_has_perm(self, perm):
         return self.request.user.has_perm(perm) \
-              and self.object.assignment.user == self.request.user \
-              or 'member' in self.request.user.groups.values_list('name', flat=True)
+              and (self.object.assignment.user == self.request.user \
+              or 'manager' in self.request.user.groups.values_list('name', flat=True))
 
     def add_note(self, message, user):
         if message:
