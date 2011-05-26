@@ -109,7 +109,7 @@
         {% for assignment in active_activities %}
             <tr class="{% cycle 'row_one' 'row_two' %}">
                 <td><a href="{% url 'activity_detail' assignment.activity.tec_id %}"><span class="ui-icon ui-icon-search"></span>{{ assignment.activity.tec_id }}</a></td>
-                <td>{{ assignment.approved_id }}</td>
+                <td>{{ assignment.activity.approved_id }}</td>
                 <td>{{ assignment.get_priority_display }}</td>
                 <td>{{ assignment.activity.event_type }}</td>
                 <td>{{ assignment.activity.short_desc }}</td>
