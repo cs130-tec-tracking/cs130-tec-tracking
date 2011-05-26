@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block title %}{{ block.super }} | Tasks Report{% endblock %}
+
+{% block content %}
+<div class="content_block">
+<table id="tasks_report">
+    <thead>
+    <tr>
+        <th>Activity TEC ID</th>
+        <th>Task Name</th>
+        <th>Task Assigned To</th>
+        <th>Task Status</th>
+        <th>Acitivity Approved ID</th>
+        <th>Acitivty Event Type</th>
+        <th>Activity Event Title</th>
+        <th>Activity Event Start Date</th>
+        <th>Activity Event End Date</th>
+        <th>Acitivity Siebel Number</th>
+        <th>Acitivity Status</th>
+        <th>Activity Assigned To</th>
+        <th>Activity Priority</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for activity_task in activitytask_list %}
+    <tr class="{% cycle 'row_one' 'row_two' %}">
+        <td><a href="{% url 'activity_detail' activity_task.activity.tec_id %}"><span class="ui-icon ui-icon-search"></span>{{ activity_task.activity.tec_id }}</a></td>
+        <td>{{ activity_task.task.name }}</td>
+        <td>{{ activity_task.assigned_user.get_full_name }}</td>
+        <td>{{ activity_task.status }}</td>
+        <td>{{ activity_task.activity.approved_id|default:'Not Approved' }}</td>
+        <td>{{ activity_task.activity.event_type }}</td>
+        <td>{{ activity_task.activity.short_desc }}</td>
+        <td>{{ activity_task.activity.event_start_date }}</td>
+        <td>{{ activity_task.activity.event_end_date }}</td>
+        <td>{{ activity_task.activity.siebel_num|default:'Not Provided' }}</td>
+        <td>{{ activity_task.activity.get_status_display }}</td>
+        <td>{{ activity_task.activity.assignment.user.get_full_name }}</td>
+        <td>{{ activity_task.activity.assignment.get_priority_display }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type='text/javascript'>
+    $(document).ready(function() {
+        $('#tasks_report').dataTable({
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers",
+            "oLanguage": {
+                "sSearch": "Search all columns:"
+            },
+            "sDom": 'CT<"clear">lfrtip',
+            "oTableTools": {
+                "sSwfPath": "{{ STATIC_PREFIX }}swf/copy_cvs_xls_pdf.swf"
+            }
+        });
+    });
+</script>
+{% endblock %}
