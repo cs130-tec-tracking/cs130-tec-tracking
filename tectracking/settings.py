@@ -72,7 +72,9 @@ STATIC_URL = SITE_ROOT + '/static/'
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
-ADMIN_MEDIA_PREFIX = SITE_ROOT + '/static/admin/'
+ADMIN_MEDIA_PREFIX = SITE_ROOT + '/static/grappelli/'
+
+GRAPPELLI_ADMIN_TITLE = 'IBM TEC Tracking'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -132,6 +134,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.admindocs',
     'common',
