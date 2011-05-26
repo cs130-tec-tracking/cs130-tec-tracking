@@ -73,6 +73,9 @@ class RoomReservation(models.Model):
         db_table = 'room_reservations'
         ordering = ['-datetime', '-duration']
 
+    def __unicode__(self):
+        return '%s | %s' % (self.activity.tec_id, self.room.location)
+
 class Task(models.Model):
     task_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, unique=True)
@@ -95,6 +98,9 @@ class ActivityTask(models.Model):
             ('can_change_task_status', 'Can change the status of a task'),
         )
 
+    def __unicode__(self):
+        return '%s | %s' % (self.activity.tec_id, self.task.name)
+
 class Assignment(models.Model):
     PRIORITY_CHOICES = (
         (1, u'High Priority'),
@@ -111,6 +117,9 @@ class Assignment(models.Model):
         db_table = 'activity_assignments'
         ordering = ['priority']
 
+    def __unicode__(self):
+        return '%s | %s' % (self.activity.tec_id, self.user.get_full_name())
+
 class Note(models.Model):
     note_id = models.AutoField(primary_key=True)
     activity = models.ForeignKey(Activity, db_column='tec_id')
@@ -119,3 +128,6 @@ class Note(models.Model):
 
     class Meta:
         db_table = 'activity_note'
+
+    def __unicode__(self):
+        return '%s | %s' % (self.activity.tec_id, self.user.get_full_name())
