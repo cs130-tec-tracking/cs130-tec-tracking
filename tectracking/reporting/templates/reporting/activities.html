@@ -80,6 +80,11 @@
                 "sSwfPath": "{{ STATIC_PREFIX }}swf/copy_cvs_xls_pdf.swf"
             }
         });
+
+        $('.ColVis_Button').button();
+
+        $('#activity_report_filter').after($('<div id="table_wrapper"></div>'));
+        $('#table_wrapper').append($('#activity_report'));
     });
 </script>
 {% endblock %}

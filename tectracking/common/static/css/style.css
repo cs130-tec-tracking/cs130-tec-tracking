@@ -323,17 +323,45 @@ div.ui-state-error, div.ui-state-highlight {
 /* Pad table headers and data */
 td { padding: 2px 7px; }
 
+#table_wrapper {
+    width: auto;
+    clear: both;
+    overflow-x: scroll;
+}
+
 #activity_report {
-    font-size: 9px;
+    width: auto;
+    font-size: 10px;
     font-family: "Lucida Console";
     color: black;
-    word-wrap: break-word;
 }
 
 #activity_report td {
-    max-width: 65px;
-    padding: 10px 3px;
+    padding: 10px 5px;
     margin: 0px;
+}
+
+#activity_report_length {
+    width: auto;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+#activity_report_filter {
+    width: auto;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+#activity_report_info {
+    width: auto;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+#activity_report_paginate {
+    margin-right: 5px;
+    margin-top: 5px;
 }
 
 .priority-1, .priority-1 div {
@@ -353,7 +381,7 @@ td { padding: 2px 7px; }
 
 #activity_report .DataTables_sort_wrapper {
     position: relative;
-    height: 40px;
+    height: 50px;
 }
 
 #activity_report .DataTables_sort_wrapper span {
