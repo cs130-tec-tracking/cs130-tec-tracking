@@ -5,8 +5,11 @@
 
 {% block content %}
 
-<div class="content_block">
+<div class="content_body">
+<div class="content_head">
 <h2>Activity Details for {{ activity.tec_id }} </h2>
+</div>
+<div class="content_block">
 <div id="activitydetail">
 <table>
 <tbody>
@@ -122,12 +125,17 @@
 {% endif %}
 {% endif %}
 </div>
+</div>
 
-<div class="content_block">
+
 
 {% if activity.status == 'A' and perms.activities.can_approve_activity %}
 {% if assignment.user == user or user|in_group:"manager" %}
+<div class="content_body">
+<div class="content_head">
 <h2>Approve</h2>
+</div>
+<div class="content_block">
 <form method="post" action="{{ request.get_full_path }}">
 {% csrf_token %}
 <p><label for="approved_id">Approved ID: </label>
@@ -138,10 +146,15 @@
          value="Approve"
          class="jsbutton"/></p>
 </form>
+</div></div>
 {% endif %}
 {% endif %}
 
+<div class="content_body">
+<div class="content_head">
 <h2>Assignment</h2>
+</div>
+<div class="content_block">
 <form method="post" action="{{ request.get_full_path }}">
 	{% csrf_token %}
 	<table>
@@ -183,9 +196,14 @@
 		</tbody>
 	</table>
 </form>
+</div></div>
+
+<div class="content_body">
+<div class="content_head">
+<h2>Notes</h2>
 </div>
 <div class="content_block">
-<h2>Notes</h2>
+
 <form method="post" action="{{ request.get_full_path }}">
 	{% csrf_token %}
 	<table>
@@ -215,5 +233,5 @@
 		</tbody>
 	</table>
 </form>
-</div>
+</div></div>
 {% endblock %}
