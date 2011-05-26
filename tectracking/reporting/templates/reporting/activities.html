@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load url from future %}
 
 {% block title %}{{ block.super }} | Activities Report{% endblock %}
 
@@ -35,7 +36,7 @@
 	<tbody>
 	{% for activity in activity_list %}
 	<tr class="{% cycle 'row_one' 'row_two' %}">
-		<td>{{ activity.tec_id }}</td>
+		<td><a href="{% url 'activity_detail' activity.tec_id %}"><span class="ui-icon ui-icon-search"></span>{{ activity.tec_id }}</a></td>
 		<td>{{ activity.approved_id|default:'Not Approved' }}</td>
 		<td>{{ activity.event_type }}</td>
 		<td>{{ activity.short_desc }}</td>
