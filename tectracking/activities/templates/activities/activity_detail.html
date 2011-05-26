@@ -174,9 +174,9 @@
                                    class="jsbutton" />
                         </td>
 			{% else %}
-			<td><span id="assignmentuser">{{ assignment.user.get_full_name }}</span></td>
-			<td><span id="assignmentpriority">{{ assignment.get_priority_display }}</span></td>
-			<td><span id="assignmentstatus">{{ assignment.escalation_status }}</span></td>
+			<td><span id="assignmentuser">{{ assignment.user.get_full_name|default:'Nobody' }}</span></td>
+			<td><span id="assignmentpriority">{{ assignment.get_priority_display|default:'None' }}</span></td>
+			<td><span id="assignmentstatus">{{ assignment.escalation_status|default:'None' }}</span></td>
 			{% endif %}
 			</tr>
 		</tbody>
