@@ -305,6 +305,25 @@ header nav ul li {
     display: inline;
 }
 
+.content_head {
+    position: relative;
+}
+
+#report_header {
+    position: absolute;
+    left: 5px;
+}
+
+#report_header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#report_header ul li {
+    display: inline;
+}
+
 a span.ui-icon, p span.ui-icon {
 	float: left;
 	margin-right: 2px;

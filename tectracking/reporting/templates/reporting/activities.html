@@ -6,6 +6,12 @@
 {% block content %}
 <div class="content_block">
 <div class="content_head">
+  <div id="report_header">
+    <ul>
+      <li><a class="linkbutton" href="{% url 'reporting_activity' %}">Activities Report</a></li>
+      <li><a class="linkbutton" href="{% url 'reporting_tasks' %}">Tasks Report</a></li>
+    </ul>
+  </div>
   <h2>Activities Report</h2>
 </div>
 <table id="activity_report">
