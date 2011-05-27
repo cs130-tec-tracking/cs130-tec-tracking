@@ -328,7 +328,7 @@ td { padding: 2px 7px; }
     overflow-x: scroll;
 }
 
-#activity_report {
+.dataTables_wrapper table {
     width: auto;
     font-size: 10px;
     font-family: "Lucida Console";
@@ -380,12 +380,12 @@ dataTables_wrapper table td {
     border-color: tan;
 }
 
-#activity_report .DataTables_sort_wrapper {
+.DataTables_sort_wrapper {
     position: relative;
     height: 50px;
 }
 
-#activity_report .DataTables_sort_wrapper span {
+.DataTables_sort_wrapper span {
     position: absolute;
     bottom: 0;
 }
