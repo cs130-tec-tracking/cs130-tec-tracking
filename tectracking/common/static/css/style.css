@@ -269,6 +269,11 @@ body {
 
 /*	background: #F3F3F3;*/
 }
+
+.content_body p{
+	margin-top:10px;
+}
+
 .content_body {
     padding: 10px;
     -moz-border-radius-bottomright:10px;
