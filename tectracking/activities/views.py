@@ -53,14 +53,8 @@ class ActivityDetailView(DetailView):
         except Assignment.DoesNotExist:
             assignment = None
 
-
-        if self.request.user.has_perm('activities.can_accept_activity'):
-            users = User.objects.filter(is_active='Y')
-        else:
-            users = None
-
         context = {
-            'users': users,
+            'users': User.objects.filter(is_active='Y'),
             'assignment': assignment,
             'notes': notes,
             'activity_tasks': activity_tasks,
