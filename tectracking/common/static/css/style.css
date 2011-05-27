@@ -382,12 +382,17 @@ dataTables_wrapper table td {
 
 .DataTables_sort_wrapper {
     position: relative;
-    height: 50px;
+}
+
+.DataTables_sort_wrapper div {
+    padding-left: 20px;
+    padding-right: 5px;
 }
 
 .DataTables_sort_wrapper span {
     position: absolute;
-    bottom: 0;
+    top: 5px;
+    left: 0;
 }
 
 #tasks {
