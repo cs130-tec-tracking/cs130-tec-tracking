@@ -1,12 +1,9 @@
 from django.contrib import admin
-from models import Activity, Room, RoomReservation, Task, ActivityTask, Assignment, Note
+from models import Activity, Task, ActivityTask, Assignment, Note
+from tectracking.inventory.models import AssetReservation
 
-class RoomReservationInline(admin.StackedInline):
-    model = RoomReservation
-    extra = 1
-
-class RoomReservationTabularInline(admin.TabularInline):
-    model = RoomReservation
+class AssetReservationInline(admin.StackedInline):
+    model = AssetReservation
     extra = 1
 
 class ActivityTaskInline(admin.TabularInline):
@@ -24,25 +21,13 @@ class ActivityAdmin(admin.ModelAdmin):
     list_display = ('tec_id', 'approved_id', 'event_type', 'short_desc', 'event_start_date', 'siebel_num', 'num_attendees', 'status',)
     list_filter = ('assignment__user', 'event_type', 'tec_site', 'num_attendees', 'room_required', 'laptops_required', 'status',)
     search_fields = ('tec_id', 'approved_id', 'assignment__user__first_name', 'assignment__user__last_name', 'siebel_num', 'event_organizer', 'event_type', 'tec_site',)
-    inlines = (AssignmentInline, ActivityTaskInline, NoteInline, RoomReservationInline,)
+    inlines = (AssignmentInline, ActivityTaskInline, NoteInline, AssetReservationInline,)
     date_hierarchy = 'event_start_date'
 
 class ActivityTaskAdmin(admin.ModelAdmin):
     list_display = ('activity', 'task', 'status', 'assigned_user',)
     list_filter = ('assigned_user',)
     search_fields = ('assigned__user__first_name', 'assigned_user__last_name', 'task__name', 'activity__tec_id', 'activity__approved_id', 'activity__siebel_num',)
-
-class RoomAdmin(admin.ModelAdmin):
-    list_display = ('location', 'capacity', 'num_workstations',)
-    list_filter = ('capacity', 'num_workstations',)
-    search_fields = ('location',)
-    inlines = (RoomReservationTabularInline,)
-
-class RoomReservationAdmin(admin.ModelAdmin):
-    list_display = ('activity', 'room', 'datetime', 'duration',)
-    list_filter = ('room', 'datetime', 'duration',)
-    search_fields = ('activity__tec_id', 'room__location',)
-    date_hierarchy = 'datetime'
 
 class TaskAdmin(admin.ModelAdmin):
     list_display = ('name',)
@@ -60,8 +45,6 @@ class NoteAdmin(admin.ModelAdmin):
 
 admin.site.register(Activity, ActivityAdmin)
 admin.site.register(ActivityTask, ActivityTaskAdmin)
-admin.site.register(Room, RoomAdmin)
-admin.site.register(RoomReservation, RoomReservationAdmin)
 admin.site.register(Task, TaskAdmin)
 admin.site.register(Assignment, AssignmentAdmin)
 admin.site.register(Note, NoteAdmin)

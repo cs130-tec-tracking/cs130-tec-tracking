@@ -47,3 +47,28 @@ class Note(models.Model):
 
     class Meta:
         db_table = 'asset_note'
+
+class Room(models.Model):
+    asset = models.OneToOneField(Asset, db_column='serial_no')
+    location = models.CharField(max_length=300)
+    capacity = models.IntegerField()
+    num_workstations = models.IntegerField(null=True, blank=True, db_column='no_workstations', verbose_name='number of worksations')
+
+    class Meta:
+        db_table = 'room'
+
+    def __unicode__(self):
+        return self.location
+
+class AssetReservation(models.Model):
+    activity = models.ForeignKey('activities.Activity', db_column='tec_id')
+    asset = models.ForeignKey(Asset, db_column='serial_no')
+    datetime = models.DateTimeField(verbose_name='time')
+    duration = models.TimeField()
+
+    class Meta:
+        db_table = 'asset_reservations'
+        ordering = ['-datetime', '-duration']
+
+    def __unicode__(self):
+        return '%s | %s' % (self.activity.tec_id, self.room.location)

@@ -35,7 +35,7 @@ class Activity(models.Model):
     laptops_required = models.CharField(max_length=1, choices=REQUIRED_CHOICES)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='N')
 
-    reserved_rooms = models.ManyToManyField('Room', through='RoomReservation')
+    reserved_assets = models.ManyToManyField('inventory.Asset', through='inventory.AssetReservation')
     tasks = models.ManyToManyField('Task', through='ActivityTask')
 
     class Meta:
@@ -50,31 +50,6 @@ class Activity(models.Model):
 
     def __unicode__(self):
         return self.tec_id
-
-class Room(models.Model):
-    room_id = models.AutoField(primary_key=True)
-    location = models.CharField(max_length=300)
-    capacity = models.IntegerField()
-    num_workstations = models.IntegerField(null=True, blank=True, db_column='no_workstations', verbose_name='number of worksations')
-
-    class Meta:
-        db_table = 'room'
-
-    def __unicode__(self):
-        return self.location
-
-class RoomReservation(models.Model):
-    activity = models.ForeignKey(Activity, db_column='tec_id')
-    room = models.ForeignKey(Room)
-    datetime = models.DateTimeField(verbose_name='time')
-    duration = models.TimeField()
-
-    class Meta:
-        db_table = 'room_reservations'
-        ordering = ['-datetime', '-duration']
-
-    def __unicode__(self):
-        return '%s | %s' % (self.activity.tec_id, self.room.location)
 
 class Task(models.Model):
     task_id = models.AutoField(primary_key=True)
