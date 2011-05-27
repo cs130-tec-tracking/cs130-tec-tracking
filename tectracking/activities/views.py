@@ -19,14 +19,14 @@ class ActivityListView(ListView):
         priority_choices = Assignment.PRIORITY_CHOICES
 
         if self.request.user.is_authenticated():
-            assignments = Assignment.objects.filter(user=self.request.user)
-            tasks = ActivityTask.objects.filter(assigned_user=self.request.user).exclude(activity__status='C')
+            assignments = Assignment.objects.filter(user=self.request.user).order_by('priority', 'activity__event_start_date')
+            tasks = ActivityTask.objects.filter(assigned_user=self.request.user).exclude(activity__status='C').order_by('activity__event_start_date')
         else:
             assignments = None
             tasks = None
 
         if self.request.user.has_perm('activities.can_accept_activity'):
-            unassigned_activities = Activity.objects.filter(status='N')
+            unassigned_activities = Activity.objects.filter(status='N').order_by('event_start_date')
             users = User.objects.filter(is_active='Y')
         else:
             unassigned_activities = None
