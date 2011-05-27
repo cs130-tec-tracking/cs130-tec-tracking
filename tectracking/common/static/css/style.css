@@ -219,6 +219,13 @@ body {
 .table_links a:hover { color: #036; }
 */
 
+/*.jsbutton{
+
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+}*/
+
 .content_block{
 	margin-bottom:25px;
 
@@ -238,14 +245,14 @@ body {
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	box-shadow:inset 0px 1px 0px 0px #ffffff;
 
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
-	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #EBEBEB), color-stop(1, #C5C5C5) );
+	background:-moz-linear-gradient( center top, #EBEBEB 5%, #C5C5C5 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#EBEBEB', endColorstr='#C5C5C5');
 	background-color:#ededed;
 	border-bottom:1px solid #bcbcbc;/*#dcdcdc;*/
 	color:#333;
 	font-family:arial;
-	font-size:15px;
+	/*font-size:16px;*/
 	font-weight:bold;
 	text-decoration:none;
 /*	text-shadow:1px 1px 0px #ffffff;*/
@@ -312,8 +319,8 @@ header nav ul li {
 #report_header {
     position: absolute;
     left: 5px;
+	float:left;
 }
-
 #report_header ul {
     list-style: none;
     margin: 0;
@@ -324,6 +331,39 @@ header nav ul li {
     display: inline;
 }
 
+#report_header_left {
+/*    position: absolute;
+    left: 5px;*/
+	float:left;
+}
+
+#report_header_right {
+   /* position: absolute;
+    left: 5px;*/
+	float:right;
+}
+
+#report_header_left ul {
+    list-style: none;
+ /*   margin: 0;
+    padding: 0;*/
+}
+
+#report_header_right ul {
+    list-style: none;
+ /*   margin: 0;
+    padding: 0;*/
+}
+
+#report_header_left ul li {
+    display: inline;
+}
+
+#report_header_right ul li {
+    display: inline;
+}
+
+
 a span.ui-icon, p span.ui-icon {
 	float: left;
 	margin-right: 2px;
@@ -331,7 +371,7 @@ a span.ui-icon, p span.ui-icon {
 
 h2 {
 	margin-bottom: 5px;
-	font-size:114%;
+	font-size:150%;
 }
 
 div.ui-state-error, div.ui-state-highlight {
