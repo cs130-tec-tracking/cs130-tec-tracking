@@ -5,22 +5,25 @@
 
 {% block content %}
 <div class="content_block">
+<div class="content_head">
+  <h2>Tasks Report</h2>
+</div>
 <table id="tasks_report">
     <thead>
     <tr>
-        <th>Activity TEC ID</th>
-        <th>Task Name</th>
-        <th>Task Assigned To</th>
-        <th>Task Status</th>
-        <th>Acitivity Approved ID</th>
-        <th>Acitivty Event Type</th>
-        <th>Activity Event Title</th>
-        <th>Activity Event Start Date</th>
-        <th>Activity Event End Date</th>
-        <th>Acitivity Siebel Number</th>
-        <th>Acitivity Status</th>
-        <th>Activity Assigned To</th>
-        <th>Activity Priority</th>
+        <th><div>Activity TEC ID</div></th>
+        <th><div>Task Name</div></th>
+        <th><div>Task Assigned To</div></th>
+        <th><div>Task Status</div></th>
+        <th><div>Acitivity Approved ID</div></th>
+        <th><div>Acitivty Event Type</div></th>
+        <th><div>Activity Event Title</div></th>
+        <th><div>Activity Event Start Date</div></th>
+        <th><div>Activity Event End Date</div></th>
+        <th><div>Acitivity Siebel Number</div></th>
+        <th><div>Acitivity Status</div></th>
+        <th><div>Activity Assigned To</div></th>
+        <th><div>Activity Priority</div></th>
     </tr>
     </thead>
     <tbody>
@@ -60,6 +63,11 @@
                 "sSwfPath": "{{ STATIC_PREFIX }}swf/copy_cvs_xls_pdf.swf"
             }
         });
+
+        $('.ColVis_Button').button();
+
+        $('.dataTables_filter').after($('<div id="table_wrapper"></div>'));
+        $('#table_wrapper').append($('#tasks_report'));
     });
 </script>
 {% endblock %}
