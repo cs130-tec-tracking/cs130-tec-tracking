@@ -335,6 +335,10 @@ td { padding: 2px 7px; }
     color: black;
 }
 
+.dataTables_wrapper {
+    margin-top: 5px;
+}
+
 dataTables_wrapper table td {
     padding: 10px 5px;
     margin: 0px;
