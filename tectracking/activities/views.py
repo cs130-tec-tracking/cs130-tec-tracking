@@ -20,8 +20,10 @@ class ActivityListView(ListView):
 
         if self.request.user.is_authenticated():
             assignments = Assignment.objects.filter(user=self.request.user)
+            tasks = ActivityTask.objects.filter(assigned_user=self.request.user).exclude(activity__status='C')
         else:
             assignments = None
+            tasks = None
 
         if self.request.user.has_perm('activities.can_accept_activity'):
             unassigned_activities = Activity.objects.filter(status='N')
@@ -33,6 +35,7 @@ class ActivityListView(ListView):
         context = {
             'assignments': assignments,
             'unassigned_activities': unassigned_activities,
+            'tasks': tasks,
             'users': users,
             'priority_choices': priority_choices,
         }

@@ -141,6 +141,45 @@
 </div></div>
 {% endif %}
 
+{% if user.is_authenticated %}
+<div class="content_block">
+<div class="content_head">
+<h2>Active Assigned Tasks</h2>
+</div>
+<div class="content_body">
+{% if tasks %}
+<table>
+    <thead>
+        <tr>
+        <th><span class="activity_head">Activity TEC ID</span></th>
+        <th><span class="activity_head">Task Name</span></th>
+        <th><span class="activity_head">Task Status</span></th>
+        <th><span class="activity_head">Event Title</span></th>
+        <th><span class="activity_head">Event Type</span></th>
+        <th><span class="activity_head">Activity Status</span></th>
+        <th><span class="activity_head">Activity Start Date</span></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+            <tr class="{% cycle 'row_one' 'row_two' %}">
+                <td><a href="{% url 'activity_detail' task.activity.tec_id %}"><span class="ui-icon ui-icon-search"></span>{{ task.activity.tec_id }}</a></td>
+                <td>{{ task.task.name }}</td>
+                <td>{{ task.status }}</td>
+                <td>{{ task.activity.short_desc }}</td>
+                <td>{{ task.activity.event_type }}</td>
+                <td>{{ task.activity.get_status_display }}</td>
+                <td>{{ task.activity.event_start_date }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p>Total active tasks: <span class="totalcount">{{ tasks|length }}</span></p>
+{% else %}
+<p>You do not have any active tasks.</p>
+{% endif %}
+</div></div>
+{% endif %}
 
 <div id="calender_block">
 <div id='calendar'></div>
