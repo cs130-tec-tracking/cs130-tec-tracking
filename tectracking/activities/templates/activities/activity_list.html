@@ -165,7 +165,7 @@
             <tr class="{% cycle 'row_one' 'row_two' %}">
                 <td><a href="{% url 'activity_detail' task.activity.tec_id %}"><span class="ui-icon ui-icon-search"></span>{{ task.activity.tec_id }}</a></td>
                 <td>{{ task.task.name }}</td>
-                <td>{{ task.status }}</td>
+                <td>{{ task.status|default:'None' }}</td>
                 <td>{{ task.activity.short_desc }}</td>
                 <td>{{ task.activity.event_type }}</td>
                 <td>{{ task.activity.get_status_display }}</td>
