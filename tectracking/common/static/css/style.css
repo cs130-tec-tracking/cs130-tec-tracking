@@ -335,32 +335,30 @@ td { padding: 2px 7px; }
     color: black;
 }
 
-#activity_report td {
+dataTables_wrapper table td {
     padding: 10px 5px;
     margin: 0px;
 }
 
-#activity_report_length {
+.dataTables_length {
     width: auto;
     margin-left: 5px;
     margin-bottom: 5px;
 }
 
-#activity_report_filter {
+.dataTables_filter {
     width: auto;
     margin-right: 5px;
     margin-bottom: 5px;
 }
 
-#activity_report_info {
+.dataTables_info {
     width: auto;
-    margin-left: 5px;
-    margin-top: 5px;
+    margin: 5px;
 }
 
-#activity_report_paginate {
-    margin-right: 5px;
-    margin-top: 5px;
+.dataTables_paginate {
+    margin: 5px;
 }
 
 .priority-1, .priority-1 div {
